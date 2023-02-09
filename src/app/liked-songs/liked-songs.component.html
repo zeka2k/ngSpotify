@@ -1,0 +1,15 @@
+<h2>Liked Songs</h2>
+<table class="table">
+  <th>Title</th>
+  <th>🕗</th>
+  <th>Favorite</th>
+  <tr *ngFor="let song of likedSongs; let k = index">
+    <td>{{ song.title }}</td>
+    <td>{{ song.length }}s</td>
+    <td>
+      <div *ngIf="song.favorite == true">
+        <button class="btn btn-edit" (click)="addFavorite(k)">♥</button>
+      </div>
+    </td>
+  </tr>
+</table>

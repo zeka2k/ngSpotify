@@ -1,0 +1,16 @@
+<h2>Liked Albums</h2>
+<div *ngFor="let artist of albumList; let i = index">
+  <div *ngFor="let album of artist.albums; let j = index">
+    <div *ngIf="album.favorite == true">
+      <h3>
+        |Albums of {{ artist.name }}|
+        <button class="btn btn-edit" (click)="addFavorite(i, j)">♥</button>
+      </h3>
+      <div>
+        <img [src]="album.image" alt="" />
+      </div>
+      <p>Album description -> {{ album.description }}</p>
+      <ngSpotify-songs [songs]="album.songs"></ngSpotify-songs>
+    </div>
+  </div>
+</div>

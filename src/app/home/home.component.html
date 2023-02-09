@@ -1,0 +1,7 @@
+<h2>Home</h2>
+<div *ngFor="let item of albumList">
+  <h1>|Albums of {{ item.name }}|</h1>
+  <div *ngFor="let album of item.albums; let i = index">
+  </div>
+  <ngSpotify-albums [albums]="item.albums"></ngSpotify-albums>
+</div>

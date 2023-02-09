@@ -1,0 +1,23 @@
+<button (click)="showSongs()">Show More / Less</button>
+
+<div [hidden]="hideSongs">
+  <h3>Songs</h3>
+  <h3>Album Total Songs -> {{ totalSongs }} | Total Time -> {{ totalTime }}</h3>
+  <table class="table">
+    <th>Title</th>
+    <th>🕗</th>
+    <th>Favorite</th>
+    <tr *ngFor="let song of songs; let i = index">
+      <td>{{ song.title }}</td>
+      <td>{{ song.length }}s</td>
+      <td>
+        <div *ngIf="song.favorite == true">
+          <button class="btn btn-edit" (click)="addFavorite(i)">♥</button>
+        </div>
+        <div *ngIf="song.favorite == false">
+          <button class="btn btn-edit" (click)="addFavorite(i)">♡</button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

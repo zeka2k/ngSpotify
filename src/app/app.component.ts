@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import albuns from './ file/albuns.json';
 
 @Component({
-  selector: 'app-root',
+  selector: 'ngSpotify-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ngSpotify';
+  
+  constructor() {}
+
+  ngOnInit(): void {}
 }

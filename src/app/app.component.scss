@@ -1,0 +1,35 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: darkolivegreen;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+
+div {
+  width: auto;
+  border: 5px solid darkgreen;
+  padding: 15px;
+  margin: 30px;
+  background-color:rgb(39, 35, 35);
+}
+
+.active {
+  background-color: #b4b4b4;
+}
