@@ -18,12 +18,12 @@ export class SongsComponent {
   ngOnInit(): void {
     if (this.songs != undefined) {
       for (let i = 0; i < this.songs?.length; i++) {
+        let parts = this.songs[i].length.split(':').map(x => parseInt(x, 10));
+        this.totalTime += parts[0] * 60 + parts[1];
         this.totalSongs++;
-        let parts = this.songs[i].length.split(':');
-        this.minutes = this.minutes + parseInt(parts[0], 10);
-        this.seconds = this.seconds + parseInt(parts[1], 10);
-        this.totalTime = this.minutes + this.seconds;
       }
+      this.minutes = Math.floor(this.totalTime / 60);
+      this.seconds = this.totalTime % 60;
     }
   }
 
