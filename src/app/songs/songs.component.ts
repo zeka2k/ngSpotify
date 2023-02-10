@@ -10,16 +10,19 @@ export class SongsComponent {
   hideSongs = true;
   totalSongs: number = 0;
   totalTime: number = 0;
-  songTime: string = "";
+  minutes = 0;
+  seconds = 0;
 
   @Input() songs: Song[] | undefined;
 
   ngOnInit(): void {
     if (this.songs != undefined) {
       for (let i = 0; i < this.songs?.length; i++) {
-        // this.songTime = this.songs[i].length.toString();
-        // this.totalTime = this.totalTime + parseFloat(this.songTime);
         this.totalSongs++;
+        let parts = this.songs[i].length.split(':');
+        this.minutes = this.minutes + parseInt(parts[0], 10);
+        this.seconds = this.seconds + parseInt(parts[1], 10);
+        this.totalTime = this.minutes + this.seconds;
       }
     }
   }

@@ -10,11 +10,6 @@ import { LikedAlbumsComponent } from './liked-albums/liked-albums.component';
 import { LikedSongsComponent } from './liked-songs/liked-songs.component';
 import { HomeComponent } from './home/home.component';
 
-const appRoute: Routes = [
-  {path:'', component: HomeComponent},
-  {path:'LikedAlbums', component: LikedAlbumsComponent},
-  {path:'LikedSongs', component: LikedSongsComponent},
-]
 
 @NgModule({
   declarations: [
@@ -28,7 +23,6 @@ const appRoute: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoute)
   ],
   providers: [],
   bootstrap: [AppComponent]

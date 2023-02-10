@@ -15,7 +15,7 @@ export class AlbumsComponent  implements OnInit{
 
   ngOnInit(): void {}
 
-  addFavorite(i: number) {
+  addFavorite(i: number) {//
     if(this.albums != undefined) {
       this.albums[i].favorite = !this.albums[i].favorite;
       console.log(this.albums[i].favorite);
