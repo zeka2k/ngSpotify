@@ -1,0 +1,7 @@
+<h1>Select an Artist</h1>
+<div class="main-container">
+  <div *ngFor="let item of albumList">
+    <li routerLinkActive="active"><h2 [routerLink]="['/home', item.name]">|{{ item.name }}|</h2></li>
+    <router-outlet></router-outlet>
+  </div>
+</div>
