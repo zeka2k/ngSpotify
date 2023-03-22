@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Artist, Song } from '../services/artist';
-import { GetDataService } from '../services/getData.service';
+import { Artist, Song } from '../core/services/artist';
+import { GetDataService } from '../core/services/getData.service';
 
 @Component({
   selector: 'ngSpotify-liked-songs',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Artist } from '../services/artist';
-import { GetDataService } from '../services/getData.service';
+import { Artist } from '../core/services/artist';
+import { GetDataService } from '../core/services/getData.service';
 
 @Component({
   selector: 'ngSpotify-home',
@@ -9,7 +9,6 @@ import { GetDataService } from '../services/getData.service';
 })
 export class HomeComponent implements OnInit {
   albumList!: Artist[];
-  
 
   constructor(private data: GetDataService) {}
 

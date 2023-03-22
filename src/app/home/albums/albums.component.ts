@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Album } from '../../services/artist';
-import { GetDataService } from '../../services/getData.service';
+import { Album } from '../../core/services/artist';
+import { GetDataService } from '../../core/services/getData.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NewAlbumFormComponent } from './new-album-form/new-album-form.component';
