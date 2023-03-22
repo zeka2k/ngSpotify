@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Song } from '../services/artist';
-import { GetDataService } from '../services/getData.service';
+import { Song } from '../../services/artist';
+import { GetDataService } from '../../services/getData.service';
 
 @Component({
   selector: 'ngSpotify-songs',

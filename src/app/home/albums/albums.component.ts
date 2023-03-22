@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Album } from '../services/artist';
-import { GetDataService } from '../services/getData.service';
+import { Album } from '../../services/artist';
+import { GetDataService } from '../../services/getData.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NewAlbumFormComponent } from '../new-album-form/new-album-form.component';
-
+import { NewAlbumFormComponent } from './new-album-form/new-album-form.component';
 
 @Component({
   selector: 'ngSpotify-albums',
@@ -19,10 +18,15 @@ export class AlbumsComponent implements OnInit, OnDestroy {
   paramsSubscription!: Subscription;
   albumForm!: FormGroup;
 
-  constructor(private route: ActivatedRoute, private data: GetDataService, private dialog: MatDialog, private fb: FormBuilder) {
+  constructor(
+    private route: ActivatedRoute,
+    private data: GetDataService,
+    private dialog: MatDialog,
+    private fb: FormBuilder
+  ) {
     this.albumForm = this.fb.group({
       title: ['', Validators.required],
-      songs: [[]]
+      songs: [[]],
     });
   }
 
@@ -44,10 +48,10 @@ export class AlbumsComponent implements OnInit, OnDestroy {
   openDialog(): void {
     const dialogRef = this.dialog.open(NewAlbumFormComponent, {
       width: '500px',
-      data: { albumForm: this.albumForm }
+      data: { albumForm: this.albumForm },
     });
-  
-    dialogRef.afterClosed().subscribe(result => {
+
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
     });
   }

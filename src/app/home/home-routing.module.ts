@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlbumsComponent } from '../albums/albums.component';
-import { SongsComponent } from '../songs/songs.component';
+import { AlbumsComponent } from './albums/albums.component';
+import { SongsComponent } from '../shared/songs/songs.component';
 import { HomeComponent } from './home.component';
 
 const routes: Routes = [
@@ -12,12 +12,6 @@ const routes: Routes = [
       {
         path: ':name',
         component: AlbumsComponent,
-        children: [
-          {
-            path: ':name',
-            component: SongsComponent
-          }
-        ]
       },
     ],
   },
