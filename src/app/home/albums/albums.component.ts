@@ -5,7 +5,7 @@ import { Album } from '../../core/services/artist';
 import { GetDataService } from '../../core/services/getData.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlbumFormDialogComponent } from './album-form-dialog/album-form-dialog.component';
+import { AlbumFormDialogComponent } from '../../shared/album-form-dialog/album-form-dialog.component';
 
 @Component({
   selector: 'ngSpotify-albums',

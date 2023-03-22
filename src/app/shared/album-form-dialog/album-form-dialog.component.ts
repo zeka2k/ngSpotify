@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -8,10 +8,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./album-form-dialog.component.scss']
 })
 export class AlbumFormDialogComponent {
+
+  form: FormGroup;
+
   constructor(
     public dialogRef: MatDialogRef<AlbumFormDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { albumForm: FormGroup }
-  ) {}
+    private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.form = this.fb.group({
+      title: '',
+      songs: '',
+    });
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
