@@ -5,16 +5,18 @@ import { AlbumsRoutingModule } from './albums-routing.module';
 import { AlbumsComponent } from './albums.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { NewAlbumFormModule } from './new-album-form/new-album-form.module';
 // import do input
 
 @NgModule({
-  declarations: [NewAlbumFormComponent, AlbumsComponent],
+  declarations: [AlbumsComponent],
   imports: [
     CommonModule,
     AlbumsRoutingModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    NewAlbumFormModule
   ],
-  exports: [NewAlbumFormComponent],
+  exports: [],
 })
 export class AlbumsModule {}
