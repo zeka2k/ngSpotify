@@ -1,21 +1,20 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NewAlbumFormComponent } from './new-album-form/new-album-form.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { AlbumsRoutingModule } from './albums-routing.module';
 import { AlbumsComponent } from './albums.component';
-import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { NewAlbumFormModule } from './new-album-form/new-album-form.module';
-// import do input
+import { AlbumFormDialogComponent } from './album-form-dialog/album-form-dialog.component';
+
 
 @NgModule({
-  declarations: [AlbumsComponent],
+  declarations: [AlbumsComponent, AlbumFormDialogComponent],
   imports: [
     CommonModule,
     AlbumsRoutingModule,
+    FormsModule, ReactiveFormsModule,
     SharedModule,
-    RouterModule,
-    NewAlbumFormModule
   ],
   exports: [],
 })

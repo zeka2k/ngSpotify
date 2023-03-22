@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,19 +9,20 @@ import { SongsComponent } from './songs/songs.component';
 @NgModule({
   declarations: [SongsComponent],
   imports: [
-    FormsModule,
-    ReactiveFormsModule,
+    CommonModule,
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
+    MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
     SongsComponent,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatIconModule,
   ],
 })
 export class SharedModule {}
