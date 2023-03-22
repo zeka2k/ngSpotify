@@ -25,9 +25,7 @@ export class SongsComponent implements OnInit, OnDestroy {
       this.curentAlbum = params['name'];
       this.albumSongs = [];
       this.totalTime = 0;
-      this.albumSongs = this.data.getSongs(this.curentAlbum);
-      console.log(this.curentAlbum);
-      console.log(this.albumSongs);
+      this.albumSongs = this.data.getSongs(this.curentAlbum); //esta a retornar um array vazio se nao for o ultimo album
 
       for (let i = 0; i < this.albumSongs?.length; i++) {
         let parts = this.albumSongs[i].length

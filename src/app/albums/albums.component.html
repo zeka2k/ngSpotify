@@ -3,17 +3,37 @@
     {{ album.title }}
     <div *ngIf="album.favorite == true">
       <button class="btn btn-edit" (click)="addFavorite(i)">♥</button>
+      <!-- <button
+        mat-icon-button
+        matTooltip="Warn"
+        color="warn"
+        aria-label="Example icon-button with a heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button> -->
     </div>
     <div *ngIf="album.favorite == false">
       <button class="btn btn-edit" (click)="addFavorite(i)">♡</button>
+      <!-- <div matTooltip="Disabled" class="example-disabled">
+        <button mat-button mat-fab disabled aria-label="Example fab with a heart icon">
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </div> -->
     </div>
   </h2>
   <div>
-    <img [src]="album.image" alt=""/>
+    <img [src]="album.image" alt="" />
   </div>
-  <h2>Album description</h2><p>{{ album.description }}</p>
-  <li routerLinkActive="active">
-    <h1 [routerLink]="[album.title]">Songs</h1>
-  </li>
+  <h2>Album description</h2>
+  <p>{{ album.description }}</p>
+  <ul>
+    <li routerLinkActive="active">
+      <h1 [routerLink]="[album.title]">Songs</h1>
+    </li>
+  </ul>
   <router-outlet></router-outlet>
 </div>
+<button mat-raised-button (click)="openDialog()">Add Album</button>
+<!-- <button mat-icon-button color="primary" (click)="openDialog()">
+  <mat-icon>add</mat-icon>
+  Add Album
+</button> -->

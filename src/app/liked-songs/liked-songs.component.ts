@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Artist, Song } from '../services/artist';
-import albuns from 'src/app/ file/albuns.json';
+import { GetDataService } from '../services/getData.service';
 
 @Component({
   selector: 'ngSpotify-liked-songs',
@@ -8,14 +8,15 @@ import albuns from 'src/app/ file/albuns.json';
   styleUrls: ['./liked-songs.component.scss'],
 })
 export class LikedSongsComponent implements OnInit {
-  @Input() artists: Artist[] | undefined = albuns;
-  likedSongs: Song[] | undefined = [];
+  artists!: Artist[];
+  likedSongs!: Song[];
 
-  constructor() {}
+  constructor(private data: GetDataService) {}
 
   ngOnInit(): void {
+    this.artists = this.data.getArtists();
     this.likedSongs = this.artists
-      ?.map((artist) =>
+      .map((artist) =>
         artist.albums
           .map((album) => album.songs.filter((song) => song.favorite))
           .flat()
