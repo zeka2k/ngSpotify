@@ -10,9 +10,7 @@
         <img [src]="album.image" alt="" />
       </div>
       <p>Album description -> {{ album.description }}</p>
-      <li routerLinkActive="active">
-        <h2 [routerLink]="['/LikedAlbums',album.title]">Songs</h2>
-      </li>
+      <ngSpotify-songs [curentAlbum]="album.title"></ngSpotify-songs>
       <router-outlet></router-outlet>
     </div>
   </div>

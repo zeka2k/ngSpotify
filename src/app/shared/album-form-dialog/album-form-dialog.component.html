@@ -2,10 +2,12 @@
 <div mat-dialog-content>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field>
-      <input matInput formControlName="title" placeholder="Album Title" />
+      <input matInput [formControl]="title" placeholder="Album Title" required/>
+      <mat-icon matSuffix>person</mat-icon>
     </mat-form-field>
     <mat-form-field>
-      <input matInput formControlName="songs" placeholder="Songs" />
+      <input matInput [formControl]="song" placeholder="Songs" required/>
+      <span class="material-symbols-outlined">library_music</span>
     </mat-form-field>
   </form>
 </div>

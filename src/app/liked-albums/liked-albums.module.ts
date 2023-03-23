@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { SharedModule } from "../shared/shared.module";
 import { LikedAlbumsRoutingModule } from "./liked-albums-routing.module";
 import { LikedAlbumsComponent } from "./liked-albums.component";
 
@@ -7,7 +8,8 @@ import { LikedAlbumsComponent } from "./liked-albums.component";
   declarations: [LikedAlbumsComponent],
   imports: [
     CommonModule,
-    LikedAlbumsRoutingModule
+    LikedAlbumsRoutingModule,
+    SharedModule
   ],
 })
 export class LikedAlbumsModule {}

@@ -9,6 +9,7 @@ import { GetDataService } from '../core/services/getData.service';
 })
 export class LikedAlbumsComponent implements OnInit {
   albumList!: Artist[];
+  curentAlbum!: string;
 
   constructor(private data: GetDataService) {}
 

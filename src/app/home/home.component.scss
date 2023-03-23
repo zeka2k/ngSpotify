@@ -1,11 +1,17 @@
 h1 {
   color: darkolivegreen;
   margin: auto;
-  width: 30%;
-  padding: 50px;
 }
 
 h2 {
   color: darkolivegreen;
   padding: 50px;
+}
+
+button {
+  background-color: darkolivegreen;
+}
+
+mat-toolbar-row, mat-sidenav-container {
+  background-color: rgb(39, 35, 35);
 }

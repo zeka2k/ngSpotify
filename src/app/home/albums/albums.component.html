@@ -25,15 +25,13 @@
   </div>
   <h2>Album description</h2>
   <p>{{ album.description }}</p>
-  <ul>
+  <!-- <ul>
     <li routerLinkActive="active">
-      <!-- <h1 [routerLink]="[album.title]">Songs</h1> -->
+      <h1 [routerLink]="[album.title]">Songs</h1>
     </li>
-  </ul>
+  </ul> -->
   <!-- <router-outlet></router-outlet> -->
+  <ngSpotify-songs [curentAlbum]="album.title"></ngSpotify-songs>
 </div>
 <button mat-raised-button (click)="openDialog()">Add Album</button>
-<!-- <button mat-icon-button color="primary" (click)="openDialog()">
-  <mat-icon>add</mat-icon>
-  Add Album
-</button> -->
+
