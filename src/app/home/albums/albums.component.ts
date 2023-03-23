@@ -5,7 +5,7 @@ import { Album } from '../../core/services/artist';
 import { GetDataService } from '../../core/services/getData.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NewAlbumFormComponent } from './new-album-form/new-album-form.component';
+import { AlbumFormDialogComponent } from '../../shared/album-form-dialog/album-form-dialog.component';
 
 @Component({
   selector: 'ngSpotify-albums',
@@ -46,7 +46,7 @@ export class AlbumsComponent implements OnInit, OnDestroy {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(NewAlbumFormComponent, {
+    const dialogRef = this.dialog.open(AlbumFormDialogComponent, {
       width: '500px',
       data: { albumForm: this.albumForm },
     });
