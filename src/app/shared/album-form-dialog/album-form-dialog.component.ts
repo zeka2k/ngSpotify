@@ -36,8 +36,6 @@ export class AlbumFormDialogComponent {
     this.form.valueChanges.subscribe(value => {
       console.log(value);
     });
-
-    //console.log(this.form.value);
   }
 
   createSongFormGroup(): FormGroup { // Control ou Group?? se for control retorna com um null e group nao
@@ -60,7 +58,7 @@ export class AlbumFormDialogComponent {
   }
 
   addSong(): void {
-    this.getSongs.push(this.createSongFormGroup()); // adicionar butao plus e dirigir sempre que premido
+    this.getSongs.push(this.createSongFormGroup());
   }
 
   onNoClick(): void {
