@@ -6,7 +6,7 @@
 
 <h2 mat-dialog-title>Add Album</h2>
 <div mat-dialog-content>
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div style="text-align:center;">
     <mat-form-field>
       <input 
@@ -15,44 +15,59 @@
       id="title"
       class="form-control" 
       placeholder="Album Title" 
-      name="title"
-      ngModel
+      formControlName="title"
       required/>
     </mat-form-field>
-    <span class="material-symbols-outlined">library_music</span>
+    <mat-form-field>
+      <input 
+      matInput 
+      type="text"
+      id="description"
+      class="form-control" 
+      placeholder="Album Description" 
+      formControlname="description"
+      required/>
+    </mat-form-field>
     <h1></h1>
-    <mat-form-field>
-      <input 
-      matInput 
-      type="text" 
-      id="songName"
-      class="form-control" 
-      placeholder="Song Name" 
-      name="songName"
-      ngModel
-      required/>
-    </mat-form-field>
-    <mat-form-field>
-      <input 
-      matInput 
-      type="text" 
-      id="length"
-      class="form-control" 
-      placeholder="Song Length" 
-      name="songLength"
-      ngModel
-      required/>
-    </mat-form-field>
-    <span class="material-symbols-outlined">mic</span>
+    <div formArrayName = "getSongs">
+      <div *ngFor="let control of getSongs.controls; let index = index">
+        <div [formGroupName]="index">
+          <mat-form-field>
+            <input 
+            matInput 
+            type="text" 
+            id="songName"
+            class="form-control" 
+            placeholder="Song Name" 
+            formControlName="songName"
+            required/>
+          </mat-form-field>
+          <mat-form-field>
+            <input 
+            matInput 
+            type="text" 
+            id="length"
+            class="form-control" 
+            placeholder="Song Length" 
+            formControlName="songLength"
+            required/>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <button type="button" (click)="addSong()">Add Song</button>
   </div>
   </form>
+<pre>
+  {{ form.value | json }}
+</pre>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
   <button
     mat-button
-    [disabled]="data.albumForm.invalid"
     color="primary"
     type="submit"
   >Add</button>
 </div>
+<!-- [disabled]="data.albumForm.invalid" -->

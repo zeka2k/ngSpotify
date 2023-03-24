@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GetDataService } from 'src/app/core/services/getData.service';
-import { Song } from '../../core/services/artist';
+import { Album, Song } from '../../core/services/artist';
 
 @Component({
   selector: 'ngSpotify-album-form-dialog',
@@ -18,8 +18,6 @@ import { Song } from '../../core/services/artist';
 })
 export class AlbumFormDialogComponent {
   form: FormGroup;
-  title = new FormControl('', [Validators.required]);
-  song = new FormControl('', [Validators.required]);
 
   constructor(
     public dialogRef: MatDialogRef<AlbumFormDialogComponent>,
@@ -29,52 +27,50 @@ export class AlbumFormDialogComponent {
   ) {
     this.form = this.fb.group({
       title: '',
-      songs: [{ name: String, length: String }],
+      description: '',
+      songs: this.fb.array([this.createSongFormGroup()]),
     });
   }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      title: ['', Validators.required],
-      songs: this.fb.array([ this.createSongFormGroup() ])
+    this.form.valueChanges.subscribe(value => {
+      console.log(value);
+    });
+
+    //console.log(this.form.value);
+  }
+
+  createSongFormGroup(): FormControl { // Control ou Group??
+    return this.fb.control({
+      songName: ['', Validators.required],
+      songLength: ['', Validators.required]
     });
   }
 
-  createSongFormGroup(): FormGroup {
-    return this.fb.group({
-      title: ['', Validators.required],
-      length: ['', Validators.required]
-    });
-  }
-
-  get songs(): FormArray {
+  get getSongs(): FormArray {
     return this.form.get('songs') as FormArray;
   }
 
+  get getTitle(){
+    return this.form.get('title')?.value;
+  }
+
+  get getDescription(){
+    return this.form.get('description')?.value;
+  }
+
   addSong(): void {
-    this.songs.push(this.createSongFormGroup());
+    this.getSongs.push(this.createSongFormGroup()); // adicionar butao plus e dirigir sempre que premido
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  onSubmit(form: NgForm) {
-    console.log(this.data.albumForm.value);
-    // const value = form.value;
-    // const newSong = new Song(value.title, value.length, false);
-    // this.dialogRef.close();
-
-    const artistId = '123'; // Replace with current artist ID
-    const { title, songs } = this.form.value;
-    this.service.addAlbum(artistId, title, songs);
-  }
-
-  getErrorMessage() {
-    if (this.title.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.title.hasError('name') ? 'Not a valid name' : '';
+  onSubmit() {
+    console.log(this.form.value);
+    // this.getSongs.value;
+    // this.getTitle;
+    this.dialogRef.close();
   }
 }
