@@ -1,5 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Song } from '../../core/services/artist';
 import { GetDataService } from '../../core/services/getData.service';
@@ -19,16 +18,11 @@ export class SongsComponent implements OnInit {
   paramsSubscription!: Subscription;
   albumSongs!: Song[];
 
-  constructor(private route: ActivatedRoute, private data: GetDataService) {}
+  constructor(private data: GetDataService) {}
 
   ngOnInit(): void {
-    // this.paramsSubscription = this.route.params.subscribe((params: Params) => {
-    //   this.curentAlbum = params['name'];
-    //   this.albumSongs = [];
-    //   this.totalTime = 0;
-    //   this.albumSongs = this.data.getSongs(this.curentAlbum); //esta a retornar um array vazio se nao for o ultimo album
-
     this.albumSongs = this.data.getSongs(this.curentAlbum);
+    //console.log(this.albumSongs);
     
     for (let i = 0; i < this.albumSongs?.length; i++) {
       let parts = this.albumSongs[i].length
@@ -47,8 +41,4 @@ export class SongsComponent implements OnInit {
       console.log(this.albumSongs[i].favorite);
     }
   }
-
-  // ngOnDestroy(): void {
-  //   this.paramsSubscription.unsubscribe();
-  // }
 }

@@ -48,7 +48,13 @@ export class GetDataService {
     return this.songs;
   }
 
-  addSong(song: Song[]) {
-    
+  addAlbum(artist: string, title: string, songs: Song[]) {
+    const album = new Album(title, songs);
+    for(let i = 0; i < this.artistList.length; i++) {
+      if(this.artistList[i].name == artist) {
+        this.artistList[i].albums.push(album);
+      }
+    }
+    return album;
   }
 }

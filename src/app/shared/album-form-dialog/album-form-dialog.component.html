@@ -1,3 +1,9 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+</head>
+
 <h2 mat-dialog-title>Add Album</h2>
 <div mat-dialog-content>
   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
@@ -26,8 +32,6 @@
       ngModel
       required/>
     </mat-form-field>
-    <span class="material-symbols-outlined">mic</span>
-    <h1></h1>
     <mat-form-field>
       <input 
       matInput 
@@ -39,7 +43,7 @@
       ngModel
       required/>
     </mat-form-field>
-    <span class="material-symbols-outlined">timer</span>
+    <span class="material-symbols-outlined">mic</span>
   </div>
   </form>
 </div>

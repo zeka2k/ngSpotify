@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -7,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { GetDataService } from 'src/app/core/services/getData.service';
 import { Song } from '../../core/services/artist';
 
 @Component({
@@ -21,6 +23,7 @@ export class AlbumFormDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AlbumFormDialogComponent>,
+    private service: GetDataService,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -30,15 +33,41 @@ export class AlbumFormDialogComponent {
     });
   }
 
+  ngOnInit() {
+    this.form = this.fb.group({
+      title: ['', Validators.required],
+      songs: this.fb.array([ this.createSongFormGroup() ])
+    });
+  }
+
+  createSongFormGroup(): FormGroup {
+    return this.fb.group({
+      title: ['', Validators.required],
+      length: ['', Validators.required]
+    });
+  }
+
+  get songs(): FormArray {
+    return this.form.get('songs') as FormArray;
+  }
+
+  addSong(): void {
+    this.songs.push(this.createSongFormGroup());
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   onSubmit(form: NgForm) {
-    //console.log(this.data.albumForm.value);
-    const value = form.value;
-    const newSong = new Song(value.title, value.length, false);
-    this.dialogRef.close();
+    console.log(this.data.albumForm.value);
+    // const value = form.value;
+    // const newSong = new Song(value.title, value.length, false);
+    // this.dialogRef.close();
+
+    const artistId = '123'; // Replace with current artist ID
+    const { title, songs } = this.form.value;
+    this.service.addAlbum(artistId, title, songs);
   }
 
   getErrorMessage() {

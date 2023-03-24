@@ -12,6 +12,10 @@ export interface Album {
   favorite: boolean;
 }
 
+export class Album {
+  constructor(title: string, songs: Song[]) {}
+}
+
 export class Song {
   public title: string;
   public length: string;
