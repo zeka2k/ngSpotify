@@ -47,4 +47,8 @@ export class GetDataService {
     }
     return this.songs;
   }
+
+  addSong(song: Song[]) {
+    
+  }
 }

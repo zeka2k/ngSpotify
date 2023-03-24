@@ -1,23 +1,21 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+</head>
+
 <div *ngFor="let album of albums; let i = index">
   <h2>
     {{ album.title }}
     <div *ngIf="album.favorite == true">
-      <button class="btn btn-edit" (click)="addFavorite(i)">♥</button>
-      <!-- <button
-        mat-icon-button
-        matTooltip="Warn"
-        color="warn"
-        aria-label="Example icon-button with a heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button> -->
+      <button class="btn btn-edit" (click)="addFavorite(i)">
+        <span class="material-symbols-outlined">favorite</span>
+      </button>
     </div>
     <div *ngIf="album.favorite == false">
-      <button class="btn btn-edit" (click)="addFavorite(i)">♡</button>
-      <!-- <div matTooltip="Disabled" class="example-disabled">
-        <button mat-button mat-fab disabled aria-label="Example fab with a heart icon">
-          <mat-icon>favorite</mat-icon>
-        </button>
-      </div> -->
+      <button class="btn btn-edit" (click)="addFavorite(i)">
+        <span class="material-symbols-outlined">heart_plus</span>
+      </button>
     </div>
   </h2>
   <div>
@@ -25,12 +23,6 @@
   </div>
   <h2>Album description</h2>
   <p>{{ album.description }}</p>
-  <!-- <ul>
-    <li routerLinkActive="active">
-      <h1 [routerLink]="[album.title]">Songs</h1>
-    </li>
-  </ul> -->
-  <!-- <router-outlet></router-outlet> -->
   <ngSpotify-songs [curentAlbum]="album.title"></ngSpotify-songs>
 </div>
 <button mat-raised-button (click)="openDialog()">Add Album</button>

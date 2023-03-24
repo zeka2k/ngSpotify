@@ -1,6 +1,8 @@
-h3 {
+h2 {
   color: darkolivegreen;
-  padding: 30px;
+  margin: auto;
+  padding: 50px;
+  font-family: 'Alkatra', cursive;
 }
 
 th {
@@ -9,12 +11,14 @@ th {
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  font-family: 'Alkatra', cursive;
 }
 
 td {
   color: aliceblue;
   padding: 15px;
   text-align: left;
+  font-family: 'Alkatra', cursive;
 }
 
 table {
@@ -22,15 +26,8 @@ table {
   // border: 1px solid;
 }
 
-button {
-  color: darkolivegreen;
-  background-color: #b4b4b4;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  border-radius: 10px;
-}
-
 button:hover {
-  background-color: #111;
+  background-color: aliceblue;
 }
 
 tr:hover {

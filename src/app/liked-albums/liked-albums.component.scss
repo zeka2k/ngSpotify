@@ -5,28 +5,25 @@ img {
   width: 40%;
 }
 
-h2 {
-  color: darkolivegreen;
-  padding: 30px;
-}
-
-p {
-  color: aliceblue;
-  padding: 50px;
-}
-
-h3 {
+h1 {
   color: darkolivegreen;
   margin: auto;
   padding: 50px;
   text-align: center;
+  font-family: 'Alkatra', cursive;
 }
 
-button {
+h2 {
   color: darkolivegreen;
-  background-color: #b4b4b4;
+  margin: auto;
+  padding: 50px;
+  text-align: center;
+  font-family: 'Alkatra', cursive;
 }
 
-button:hover {
-  background-color: #111;
+p {
+  color: aliceblue;
+  margin: auto;
+  text-align: center;
+  font-family: 'Alkatra', cursive;
 }

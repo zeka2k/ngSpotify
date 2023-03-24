@@ -12,8 +12,14 @@ export interface Album {
   favorite: boolean;
 }
 
-export interface Song {
-  title: string;
-  length: string;
-  favorite: boolean;
+export class Song {
+  public title: string;
+  public length: string;
+  public favorite: boolean;
+
+  constructor(title: string, length: string, favorite: boolean) {
+    this.title = title;
+    this.length = length;
+    this.favorite = favorite;
+  }
 }

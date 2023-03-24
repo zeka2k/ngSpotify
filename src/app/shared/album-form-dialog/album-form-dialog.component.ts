@@ -3,9 +3,11 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  NgForm,
   Validators,
 } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Song } from '../../core/services/artist';
 
 @Component({
   selector: 'ngSpotify-album-form-dialog',
@@ -32,8 +34,10 @@ export class AlbumFormDialogComponent {
     this.dialogRef.close();
   }
 
-  onSubmit(): void {
-    console.log(this.data.albumForm.value);
+  onSubmit(form: NgForm) {
+    //console.log(this.data.albumForm.value);
+    const value = form.value;
+    const newSong = new Song(value.title, value.length, false);
     this.dialogRef.close();
   }
 

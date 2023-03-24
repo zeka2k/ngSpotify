@@ -1,15 +1,24 @@
-<h2>Liked Albums</h2>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+</head>
+
+<h1>Liked Albums</h1>
 <div *ngFor="let artist of albumList; let i = index">
   <div *ngFor="let album of artist.albums; let j = index">
     <div *ngIf="album.favorite == true">
-      <h3>
+      <h2>
         {{ album.title }}
-        <button class="btn btn-edit" (click)="addFavorite(i, j)">♥</button>
-      </h3>
+        <button class="btn btn-edit" (click)="addFavorite(i, j)">
+          <span class="material-symbols-outlined">favorite</span>
+        </button>
+      </h2>
       <div>
         <img [src]="album.image" alt="" />
       </div>
-      <p>Album description -> {{ album.description }}</p>
+      <h2> Album description </h2>
+      <p>{{ album.description }}</p>
       <ngSpotify-songs [curentAlbum]="album.title"></ngSpotify-songs>
       <router-outlet></router-outlet>
     </div>

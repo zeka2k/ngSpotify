@@ -1,14 +1,46 @@
 <h2 mat-dialog-title>Add Album</h2>
 <div mat-dialog-content>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div style="text-align:center;">
     <mat-form-field>
-      <input matInput [formControl]="title" placeholder="Album Title" required/>
-      <mat-icon matSuffix>person</mat-icon>
+      <input 
+      matInput 
+      type="text"
+      id="title"
+      class="form-control" 
+      placeholder="Album Title" 
+      name="title"
+      ngModel
+      required/>
     </mat-form-field>
+    <span class="material-symbols-outlined">library_music</span>
+    <h1></h1>
     <mat-form-field>
-      <input matInput [formControl]="song" placeholder="Songs" required/>
-      <span class="material-symbols-outlined">library_music</span>
+      <input 
+      matInput 
+      type="text" 
+      id="songName"
+      class="form-control" 
+      placeholder="Song Name" 
+      name="songName"
+      ngModel
+      required/>
     </mat-form-field>
+    <span class="material-symbols-outlined">mic</span>
+    <h1></h1>
+    <mat-form-field>
+      <input 
+      matInput 
+      type="text" 
+      id="length"
+      class="form-control" 
+      placeholder="Song Length" 
+      name="songLength"
+      ngModel
+      required/>
+    </mat-form-field>
+    <span class="material-symbols-outlined">timer</span>
+  </div>
   </form>
 </div>
 <div mat-dialog-actions>
@@ -18,7 +50,5 @@
     [disabled]="data.albumForm.invalid"
     color="primary"
     type="submit"
-  >
-    Add
-  </button>
+  >Add</button>
 </div>

@@ -1,14 +1,20 @@
 <h2>Liked Songs</h2>
 <table class="table">
   <th>Title</th>
-  <th>🕗</th>
+  <th>
+    <span class="material-symbols-outlined">
+    timer
+    </span>
+  </th>
   <th>Favorite</th>
   <tr *ngFor="let song of likedSongs; let k = index">
     <td>{{ song.title }}</td>
     <td>{{ song.length }}s</td>
     <td>
       <div *ngIf="song.favorite == true">
-        <button class="btn btn-edit" (click)="addFavorite(k)">♥</button>
+        <button class="btn btn-edit" (click)="addFavorite(k)">
+          <span class="material-symbols-outlined">favorite</span>
+        </button>
       </div>
     </td>
   </tr>
