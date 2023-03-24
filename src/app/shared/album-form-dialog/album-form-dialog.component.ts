@@ -40,8 +40,8 @@ export class AlbumFormDialogComponent {
     //console.log(this.form.value);
   }
 
-  createSongFormGroup(): FormControl { // Control ou Group??
-    return this.fb.control({
+  createSongFormGroup(): FormGroup { // Control ou Group?? se for control retorna com um null e group nao
+    return this.fb.group({
       songName: ['', Validators.required],
       songLength: ['', Validators.required]
     });
