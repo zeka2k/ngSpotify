@@ -8,7 +8,6 @@ img {
 h1 {
   color: darkolivegreen;
   margin: auto;
-  padding: 50px;
   text-align: center;
   font-family: 'Alkatra', cursive;
 }
@@ -26,4 +25,8 @@ p {
   margin: auto;
   text-align: center;
   font-family: 'Alkatra', cursive;
+}
+
+mat-toolbar-row, mat-sidenav-container {
+  background-color: rgb(39, 35, 35);
 }

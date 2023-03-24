@@ -1,21 +1,37 @@
-<h2>Liked Songs</h2>
-<table class="table">
-  <th>Title</th>
-  <th>
-    <span class="material-symbols-outlined">
-    timer
-    </span>
-  </th>
-  <th>Favorite</th>
-  <tr *ngFor="let song of likedSongs; let k = index">
-    <td>{{ song.title }}</td>
-    <td>{{ song.length }}s</td>
-    <td>
-      <div *ngIf="song.favorite == true">
-        <button class="btn btn-edit" (click)="addFavorite(k)">
-          <span class="material-symbols-outlined">favorite</span>
-        </button>
-      </div>
-    </td>
-  </tr>
-</table>
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+</head>
+
+<mat-toolbar>
+  <mat-toolbar-row>
+    <h1>Liked Songs</h1>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <div style="height: 65vh;">
+      <table class="table">
+        <th>Title</th>
+        <th>
+          <span class="material-symbols-outlined">
+          timer
+          </span>
+        </th>
+        <th>Favorite</th>
+        <tr *ngFor="let song of likedSongs; let k = index">
+          <td>{{ song.title }}</td>
+          <td>{{ song.length }}s</td>
+          <td>
+            <div *ngIf="song.favorite == true">
+              <button class="btn btn-edit" (click)="addFavorite(k)">
+                <span class="material-symbols-outlined">favorite</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

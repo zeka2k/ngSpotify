@@ -1,6 +1,14 @@
+h1 {
+  color: darkolivegreen;
+  margin: auto;
+  font-family: 'Alkatra', cursive;
+}
+
 h2 {
   color: darkolivegreen;
-  padding: 30px;
+  margin: auto;
+  padding: 50px;
+  font-family: 'Alkatra', cursive;
 }
 
 th {
@@ -31,4 +39,8 @@ button:hover {
 
 tr:hover {
   background-color: #111;
+}
+
+mat-toolbar-row, mat-sidenav-container {
+  background-color: rgb(39, 35, 35);
 }
