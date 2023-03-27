@@ -48,18 +48,14 @@ export class GetDataService {
     return this.songs;
   }
 
-  addAlbum(artist: string, title: string, description: string, songs: Song[]) {
-    console.log(artist);
-    console.log(title);
-    console.log(songs);
-
+  addAlbum(artistName: string, title: string, description: string, songs: Song[]) {
     const album = new Album(title, description, songs);
     console.log(album);
 
-    for(let i = 0; i < this.artistList.length; i++) {
-      if(this.artistList[i].name == artist) {
-        this.artistList[i].albums.push(album);
+    this.artistList.forEach((artist) => {
+      if(artist.name == artistName) {
+        artist.albums.push(album);
       }
-    }
+    });
   }
 }

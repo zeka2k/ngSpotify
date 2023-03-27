@@ -13,7 +13,11 @@ export interface Album {
 }
 
 export class Album {
-  constructor(title: string, descripton: string, songs: Song[]) {}
+  constructor(title: string, descripton: string, songs: Song[]) {
+    this.title = title;
+    this.description = descripton;
+    this.songs = songs;
+  }
 }
 
 export class Song {
