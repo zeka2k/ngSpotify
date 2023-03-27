@@ -20,6 +20,11 @@ export class Album {
   }
 }
 
+export interface SongForm {
+  songName: string;
+  songLength: string;
+}
+
 export class Song {
   public title: string;
   public length: string;
@@ -29,5 +34,9 @@ export class Song {
     this.title = title;
     this.length = length;
     this.favorite = favorite;
+  }
+
+  public static fromForm(form: SongForm) {
+    return new Song(form.songName, form.songLength, false);
   }
 }

@@ -35,6 +35,8 @@ export class AlbumsComponent implements OnInit, OnDestroy {
       this.curentArtist = params['name'];
       this.albums = this.data.getAlbums(this.curentArtist);
       //console.log(this.albums);
+
+      
     });
   }
 

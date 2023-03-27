@@ -62,9 +62,14 @@ export class AlbumFormDialogComponent {
   }
 
   onSubmit() {
-    const songs: Song[] = this.getSongs.value;
+    const songs: Song[] = [];
     const title = this.getTitle;
     const description = this.getDescription;
+
+    this.getSongs.controls.forEach(control => {
+      songs.push(Song.fromForm(control.value))
+    });
+
     this.dialogRef.close({ title: title, description: description, songs: songs});
   }
 }
