@@ -2,6 +2,7 @@
 <div mat-dialog-content>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div style="text-align:center;">
+    <!-- <mat-label>Album Title</mat-label><br> -->
     <mat-form-field>
       <input 
       matInput 
@@ -10,58 +11,56 @@
       class="form-control" 
       placeholder="Album Title" 
       formControlName="title"
-      required/>
-    </mat-form-field>
+      required>
+    </mat-form-field><br>
+    <!-- <mat-label>Album Description</mat-label><br> -->
     <mat-form-field>
-      <input 
+      <textarea 
       matInput 
       type="text"
       id="description"
       class="form-control" 
       placeholder="Album Description" 
-      formControlname="description"
-      required/>
-    </mat-form-field>
-    <h1></h1>
+      formControlName="description"
+      required></textarea>
+    </mat-form-field><br>
+    <mat-label>Songs</mat-label>
     <div formArrayName = "songs">
       <div *ngFor="let control of getSongs.controls; let index = index">
         <div [formGroupName]="index">
           <mat-form-field>
             <input 
-            matInput 
+            matInput
             type="text" 
             id="songName"
             class="form-control" 
             placeholder="Song Name" 
             formControlName="songName"
-            required/>
+            required>
           </mat-form-field>
           <mat-form-field>
             <input 
-            matInput 
+            matInput
             type="text" 
             id="length"
             class="form-control" 
             placeholder="Song Length" 
             formControlName="songLength"
-            required/>
+            required>
           </mat-form-field>
         </div>
       </div>
     </div>
-    <button type="button" (click)="addSong()">Add Song</button>
+    <span class="material-symbols-outlined" color="primary" type="button" (click)="addSong()">voting_chip</span>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button
+      mat-button
+      color="primary"
+      type="submit"
+    >Add</button>
   </div>
   </form>
-<pre>
-  {{ form.value | json }}
-</pre>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button
-    mat-button
-    color="primary"
-    type="submit"
-  >Add</button>
 </div>
 <!-- [disabled]="data.albumForm.invalid" -->

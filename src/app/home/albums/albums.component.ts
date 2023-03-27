@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Album } from '../../core/services/artist';
 import { GetDataService } from '../../core/services/getData.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlbumFormDialogComponent } from '../../shared/album-form-dialog/album-form-dialog.component';
 
@@ -52,8 +52,9 @@ export class AlbumsComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+      this.data.addAlbum(this.curentArtist, result.title, result.description, result.songs);
     });
+
   }
 
   ngOnDestroy(): void {

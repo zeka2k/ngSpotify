@@ -1,4 +1,4 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Album, Artist, Song } from './artist';
 
 import albuns from 'src/app/ file/albuns.json';
@@ -7,7 +7,7 @@ import albuns from 'src/app/ file/albuns.json';
   providedIn: 'root',
 })
 export class GetDataService {
-  @Input() artistList: Artist[] = albuns;
+  artistList: Artist[] = albuns;
   albums: Album[] = [];
   songs: Song[] = [];
   currentArtist!: Artist;
@@ -48,13 +48,18 @@ export class GetDataService {
     return this.songs;
   }
 
-  addAlbum(artist: string, title: string, songs: Song[]) {
-    const album = new Album(title, songs);
+  addAlbum(artist: string, title: string, description: string, songs: Song[]) {
+    console.log(artist);
+    console.log(title);
+    console.log(songs);
+
+    const album = new Album(title, description, songs);
+    console.log(album);
+
     for(let i = 0; i < this.artistList.length; i++) {
       if(this.artistList[i].name == artist) {
         this.artistList[i].albums.push(album);
       }
     }
-    return album;
   }
 }

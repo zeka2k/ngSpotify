@@ -1,15 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  NgForm,
-  Validators,
-} from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Song } from 'src/app/core/services/artist';
 import { GetDataService } from 'src/app/core/services/getData.service';
-import { Album, Song } from '../../core/services/artist';
 
 @Component({
   selector: 'ngSpotify-album-form-dialog',
@@ -17,12 +12,15 @@ import { Album, Song } from '../../core/services/artist';
   styleUrls: ['./album-form-dialog.component.scss'],
 })
 export class AlbumFormDialogComponent {
+  curentArtist!: string;
+  paramsSubscription!: Subscription;
   form: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<AlbumFormDialogComponent>,
     private service: GetDataService,
     private fb: FormBuilder,
+    private route: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.form = this.fb.group({
@@ -33,12 +31,10 @@ export class AlbumFormDialogComponent {
   }
 
   ngOnInit() {
-    this.form.valueChanges.subscribe(value => {
-      console.log(value);
-    });
+    
   }
 
-  createSongFormGroup(): FormGroup { // Control ou Group?? se for control retorna com um null e group nao
+  createSongFormGroup(): FormGroup {
     return this.fb.group({
       songName: ['', Validators.required],
       songLength: ['', Validators.required]
@@ -66,9 +62,9 @@ export class AlbumFormDialogComponent {
   }
 
   onSubmit() {
-    console.log(this.form.value);
-    // this.getSongs.value;
-    // this.getTitle;
-    this.dialogRef.close();
+    const songs: Song[] = this.getSongs.value;
+    const title = this.getTitle;
+    const description = this.getDescription;
+    this.dialogRef.close({ title: title, description: description, songs: songs});
   }
 }
