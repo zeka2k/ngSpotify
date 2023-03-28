@@ -67,7 +67,7 @@ export class GetDataService {
       }
     });
 
-    const newAlbum = [...this.getAlbums(artistName), album];
+    const newAlbum = [...this.getAlbums(artistName)];
     this.albumsBehavior.next(newAlbum);
   }
 }
