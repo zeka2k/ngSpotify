@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { Album } from '../../core/services/artist';
 import { GetDataService } from '../../core/services/getData.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,6 +17,7 @@ export class AlbumsComponent implements OnInit, OnDestroy {
   albums!: Album[];
   paramsSubscription!: Subscription;
   albumForm!: FormGroup;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -35,8 +36,10 @@ export class AlbumsComponent implements OnInit, OnDestroy {
       this.curentArtist = params['name'];
       this.albums = this.data.getAlbums(this.curentArtist);
       //console.log(this.albums);
+    });
 
-      
+    this.data.albums$.subscribe(albums => {
+      this.albums = albums;
     });
   }
 

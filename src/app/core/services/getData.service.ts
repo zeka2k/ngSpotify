@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Album, Artist, Song } from './artist';
 
 import albuns from 'src/app/ file/albuns.json';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,9 @@ export class GetDataService {
   songs: Song[] = [];
   currentArtist!: Artist;
 
+  albumsBehavior: BehaviorSubject<Album[]> = new BehaviorSubject<Album[]>([]);
+  albums$: Observable<Album[]> = this.albumsBehavior.asObservable();
+
   constructor() {}
 
   getArtists(): Artist[] {
@@ -21,8 +25,8 @@ export class GetDataService {
   getAlbums(artist: string): Album[] {
     this.albums = [];
 
-    for(let i = 0; i < this.artistList.length; i++) {
-      if(this.artistList[i].name == artist) {
+    for (let i = 0; i < this.artistList.length; i++) {
+      if (this.artistList[i].name == artist) {
         for (let j = 0; j < this.artistList[i].albums.length; j++) {
           this.albums.push(this.artistList[i].albums[j]);
         }
@@ -48,14 +52,22 @@ export class GetDataService {
     return this.songs;
   }
 
-  addAlbum(artistName: string, title: string, description: string, songs: Song[]) {
+  addAlbum(
+    artistName: string,
+    title: string,
+    description: string,
+    songs: Song[]
+  ) {
     const album = new Album(title, description, songs);
     console.log(album);
 
     this.artistList.forEach((artist) => {
-      if(artist.name == artistName) {
+      if (artist.name == artistName) {
         artist.albums.push(album);
       }
     });
+
+    const newAlbum = [...this.getAlbums(artistName), album];
+    this.albumsBehavior.next(newAlbum);
   }
 }
