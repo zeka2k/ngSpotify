@@ -18,18 +18,12 @@ export class AlbumsComponent implements OnInit, OnDestroy {
   paramsSubscription!: Subscription;
   albumForm!: FormGroup;
 
-
   constructor(
     private route: ActivatedRoute,
     private data: GetDataService,
     private dialog: MatDialog,
     private fb: FormBuilder
-  ) {
-    this.albumForm = this.fb.group({
-      title: ['', Validators.required],
-      songs: [[]],
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.paramsSubscription = this.route.params.subscribe((params: Params) => {
@@ -38,7 +32,7 @@ export class AlbumsComponent implements OnInit, OnDestroy {
       //console.log(this.albums);
     });
 
-    this.data.albums$.subscribe(albums => {
+    this.data.albums$.subscribe((albums) => {
       this.albums = albums;
     });
   }
@@ -53,12 +47,34 @@ export class AlbumsComponent implements OnInit, OnDestroy {
   openDialog(): void {
     const dialogRef = this.dialog.open(AlbumFormDialogComponent, {
       width: '500px',
-      data: { albumForm: this.albumForm },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if(result.title != '') {
-        this.data.addAlbum(this.curentArtist, result.title, result.description, result.songs);
+      if (result.title != '') {
+        this.data.addAlbum(
+          this.curentArtist,
+          result.title,
+          result.description,
+          result.songs
+        );
+      }
+    });
+  }
+
+  openEditDialog(album: Album): void {
+    const dialogRef = this.dialog.open(AlbumFormDialogComponent, {
+      width: '500px',
+      data: album,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result.title != '') {
+        this.data.addAlbum(
+          this.curentArtist,
+          result.title,
+          result.description,
+          result.songs
+        );
       }
     });
   }

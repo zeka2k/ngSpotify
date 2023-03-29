@@ -1,6 +1,6 @@
-<h2 mat-dialog-title>Add Album</h2>
+<h2 mat-dialog-title>{{ data ? 'Edit Album' : 'Add Album' }}</h2>
 <div mat-dialog-content>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form">
     <div style="text-align:center;">
     <!-- <mat-label>Album Title</mat-label><br> -->
     <mat-form-field>
@@ -12,7 +12,7 @@
       placeholder="Album Title" 
       formControlName="title"
       required>
-    </mat-form-field><br>
+    </mat-form-field>
     <!-- <mat-label>Album Description</mat-label><br> -->
     <mat-form-field>
       <textarea 
@@ -25,9 +25,9 @@
       required></textarea>
     </mat-form-field><br>
     <mat-label>Songs</mat-label>
-    <div formArrayName = "songs">
+    <div formArrayName = "songs" class="div-content">
       <div *ngFor="let control of getSongs.controls; let index = index">
-        <div [formGroupName]="index" class="div-content">
+        <div [formGroupName]="index">
           <mat-form-field>
             <input 
             matInput
@@ -52,7 +52,10 @@
         </div>
       </div>
     </div>
-    <span class="material-symbols-outlined" type="button" (click)="addSong()">voting_chip</span>
+    <!-- <span class="material-symbols-outlined" type="button" (click)="addSong()">voting_chip</span> -->
+    <button mat-icon-button (click)="addSong()">
+      <mat-icon class="material-symbols-outlined">voting_chip</mat-icon>
+    </button>
   </div>
   <!-- <pre>
     {{form.value | json}}
@@ -63,6 +66,7 @@
       mat-button
       color="primary"
       type="submit"
+      (click)="onSubmit()"
     >Add</button>
   </div>
   </form>

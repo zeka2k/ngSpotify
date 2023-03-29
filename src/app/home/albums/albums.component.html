@@ -1,7 +1,7 @@
 <div *ngFor="let album of albums; let i = index">
   <h2>
     {{ album.title }}
-    <span class="material-symbols-outlined" type="button" (click)="openDialog()">info</span>
+    <span class="material-symbols-outlined" type="button" (click)="openEditDialog(album)">info</span>
     <div *ngIf="album.favorite == true">
       <button class="btn btn-edit" (click)="addFavorite(i)">
         <span class="material-symbols-outlined">favorite</span>

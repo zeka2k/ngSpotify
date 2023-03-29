@@ -21,23 +21,41 @@ export class AlbumFormDialogComponent {
     private service: GetDataService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: Album
   ) {
-    this.form = this.fb.group({
-      title: '',
-      description: '',
-      songs: this.fb.array([this.createSongFormGroup()]),
-    });
+    if (data) {
+      this.form = this.fb.group({
+        title: data.title,
+        description: data.description,
+        songs: this.fb.array([]),
+      });
+
+      data.songs.forEach((song) => {
+        const songFormGroup = this.editSongFormGroup(song);
+        (this.form.get('songs') as FormArray).push(songFormGroup);
+      });
+    } else {
+      this.form = this.fb.group({
+        title: '',
+        description: '',
+        songs: this.fb.array([this.createSongFormGroup()]),
+      });
+    }
   }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   createSongFormGroup(): FormGroup {
     return this.fb.group({
       songName: ['', Validators.required],
-      songLength: ['', Validators.required]
+      songLength: ['', Validators.required],
+    });
+  }
+
+  editSongFormGroup(data: Song): FormGroup {
+    return this.fb.group({
+      songName: [data.title, Validators.required],
+      songLength: [data.length, Validators.required],
     });
   }
 
@@ -45,11 +63,11 @@ export class AlbumFormDialogComponent {
     return this.form.get('songs') as FormArray;
   }
 
-  get getTitle(){
+  get getTitle() {
     return this.form.get('title')?.value;
   }
 
-  get getDescription(){
+  get getDescription() {
     return this.form.get('description')?.value;
   }
 
@@ -70,10 +88,14 @@ export class AlbumFormDialogComponent {
     const title = this.getTitle;
     const description = this.getDescription;
 
-    this.getSongs.controls.forEach(control => {
-      songs.push(Song.fromForm(control.value))
+    this.getSongs.controls.forEach((control) => {
+      songs.push(Song.fromForm(control.value));
     });
 
-    this.dialogRef.close({ title: title, description: description, songs: songs});
+    this.dialogRef.close({
+      title: title,
+      description: description,
+      songs: songs,
+    });
   }
 }
