@@ -62,12 +62,13 @@
   </pre> -->
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancel</button>
+    
     <button
       mat-button
       color="primary"
       type="submit"
       (click)="onSubmit()"
-    >Add</button>
+    >{{ data ? 'Edit' : 'Add' }}</button>
   </div>
   </form>
 </div>

@@ -34,6 +34,7 @@ export class AlbumFormDialogComponent {
         const songFormGroup = this.editSongFormGroup(song);
         (this.form.get('songs') as FormArray).push(songFormGroup);
       });
+      
     } else {
       this.form = this.fb.group({
         title: '',
