@@ -57,6 +57,10 @@ export class AlbumFormDialogComponent {
     this.getSongs.push(this.createSongFormGroup());
   }
 
+  removeSong(index: number): void {
+    this.getSongs.removeAt(index);
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }

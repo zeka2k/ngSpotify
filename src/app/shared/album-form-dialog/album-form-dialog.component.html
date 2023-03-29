@@ -48,11 +48,15 @@
             formControlName="songLength"
             required>
           </mat-form-field>
+          <span class="material-symbols-outlined" type="button" (click)="removeSong(index)">do_not_disturb_on</span>
         </div>
       </div>
     </div>
-    <span class="material-symbols-outlined" color="primary" type="button" (click)="addSong()">voting_chip</span>
+    <span class="material-symbols-outlined" type="button" (click)="addSong()">voting_chip</span>
   </div>
+  <pre>
+    {{form.value | json}}
+  </pre>
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancel</button>
     <button
