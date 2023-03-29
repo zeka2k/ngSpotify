@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Album } from '../../core/services/artist';
 import { GetDataService } from '../../core/services/getData.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -61,7 +61,6 @@ export class AlbumsComponent implements OnInit, OnDestroy {
         this.data.addAlbum(this.curentArtist, result.title, result.description, result.songs);
       }
     });
-
   }
 
   ngOnDestroy(): void {
