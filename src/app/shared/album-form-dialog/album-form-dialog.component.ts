@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Song } from 'src/app/core/services/artist';
+import { Album, Song } from 'src/app/core/services/artist';
 import { GetDataService } from 'src/app/core/services/getData.service';
 
 @Component({

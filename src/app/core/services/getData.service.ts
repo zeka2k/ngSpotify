@@ -52,12 +52,7 @@ export class GetDataService {
     return this.songs;
   }
 
-  addAlbum(
-    artistName: string,
-    title: string,
-    description: string,
-    songs: Song[]
-  ) {
+  addAlbum(artistName: string, title: string, description: string,songs: Song[]) {
     const album = new Album(title, description, songs);
     console.log(album);
 

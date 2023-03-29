@@ -57,7 +57,9 @@ export class AlbumsComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.data.addAlbum(this.curentArtist, result.title, result.description, result.songs);
+      if(result.title != '') {
+        this.data.addAlbum(this.curentArtist, result.title, result.description, result.songs);
+      }
     });
 
   }
