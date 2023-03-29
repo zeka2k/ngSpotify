@@ -1,4 +1,5 @@
 .material-symbols-outlined {
+  font-size: 30px;
   font-variation-settings:
   'FILL' 0,
   'wght' 500,
@@ -11,4 +12,8 @@ h2 {
   margin: auto;
   padding: 50px;
   font-family: 'Alkatra', cursive;
+}
+
+.div-content {
+  overflow-x: auto;
 }

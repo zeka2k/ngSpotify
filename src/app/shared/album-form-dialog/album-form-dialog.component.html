@@ -27,7 +27,7 @@
     <mat-label>Songs</mat-label>
     <div formArrayName = "songs">
       <div *ngFor="let control of getSongs.controls; let index = index">
-        <div [formGroupName]="index">
+        <div [formGroupName]="index" class="div-content">
           <mat-form-field>
             <input 
             matInput
