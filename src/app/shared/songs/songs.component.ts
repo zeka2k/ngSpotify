@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Song } from '../../core/services/artist';
 import { GetDataService } from '../../core/services/getData.service';
@@ -8,8 +8,9 @@ import { GetDataService } from '../../core/services/getData.service';
   templateUrl: './songs.component.html',
   styleUrls: ['./songs.component.scss'],
 })
-export class SongsComponent implements OnInit {
+export class SongsComponent implements OnInit, OnChanges{
   @Input() curentAlbum!: string;
+  @Input() songs!: Song[];
 
   totalSongs: number = 0;
   totalTime: number = 0;
@@ -22,24 +23,28 @@ export class SongsComponent implements OnInit {
 
   ngOnInit(): void {
     //passar musicas por input e usar ngOnchange
-    this.albumSongs = this.data.getSongs(this.curentAlbum);
-    //console.log(this.albumSongs);
+    //console.log(this.songs);
     
-    for (let i = 0; i < this.albumSongs?.length; i++) {
-      let parts = this.albumSongs[i].length
-        .split(':')
-        .map((x) => parseInt(x, 10));
-      this.totalTime += parts[0] * 60 + parts[1];
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes['songs'] && changes['songs'].currentValue) {
+      for (let i = 0; i < this.songs?.length; i++) {
+        let parts = this.songs[i].length
+          .split(':')
+          .map((x) => parseInt(x, 10));
+        this.totalTime += parts[0] * 60 + parts[1];
+      }
+      this.totalSongs = this.songs.length;
+      this.minutes = Math.floor(this.totalTime / 60);
+      this.seconds = this.totalTime % 60;
     }
-    this.totalSongs = this.albumSongs.length;
-    this.minutes = Math.floor(this.totalTime / 60);
-    this.seconds = this.totalTime % 60;
   }
 
   addFavorite(i: number) {
-    if (this.albumSongs != undefined) {
-      this.albumSongs[i].favorite = !this.albumSongs[i].favorite;
-      console.log(this.albumSongs[i].favorite);
+    if (this.songs != undefined) {
+      this.songs[i].favorite = !this.songs[i].favorite;
+      console.log(this.songs[i].favorite);
     }
   }
 }

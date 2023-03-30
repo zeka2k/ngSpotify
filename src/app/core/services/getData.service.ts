@@ -81,7 +81,7 @@ export class GetDataService {
     this.albums.forEach( artistAlbum => {
       console.log(artistAlbum.id);
       console.log(album.id);
-      if(artistAlbum.id == album.id) { // quando se edita o title deixa de entrar nest ciclo, ver pelo id unico 
+      if(artistAlbum.id == album.id) {
         // console.log('album que foi editado' + JSON.stringify(album));
         // console.log('album que ja existia' + JSON.stringify(artistAlbum));
         artistAlbum.title = album.title;
