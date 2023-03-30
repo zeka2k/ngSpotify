@@ -88,12 +88,14 @@ export class AlbumFormDialogComponent {
     const songs: Song[] = [];
     const title = this.getTitle;
     const description = this.getDescription;
+    const id = this.data.id;
 
     this.getSongs.controls.forEach((control) => {
       songs.push(Song.fromForm(control.value));
     });
 
     this.dialogRef.close({
+      id: id,
       title: title,
       description: description,
       songs: songs,

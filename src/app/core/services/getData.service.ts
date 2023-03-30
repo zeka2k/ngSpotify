@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Album, Artist, Song } from './artist';
-
+import { v4 as uuid } from 'uuid';
 import albuns from 'src/app/ file/albuns.json';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class GetDataService {
-  artistList: Artist[] = albuns;
+  artistList: Artist[] = [];
   albums: Album[] = [];
   songs: Song[] = [];
   currentArtist!: Artist;
@@ -16,7 +16,17 @@ export class GetDataService {
   albumsBehavior: BehaviorSubject<Album[]> = new BehaviorSubject<Album[]>([]);
   albums$: Observable<Album[]> = this.albumsBehavior.asObservable();
 
-  constructor() {}
+  constructor() {
+    albuns.forEach((element: Artist) => {
+      this.artistList.push(element);
+    });
+    this.artistList.forEach((artist: Artist) => {
+      for(let album of artist.albums) {
+        const id = uuid();
+        album.id = id;
+      }
+    })
+  }
 
   getArtists(): Artist[] {
     return this.artistList;
@@ -54,7 +64,7 @@ export class GetDataService {
 
   addAlbum(artistName: string, title: string, description: string,songs: Song[]) {
     const album = new Album(title, description, songs);
-    console.log(album);
+    //console.log(album);
 
     this.artistList.forEach((artist) => {
       if (artist.name == artistName) {
@@ -64,5 +74,25 @@ export class GetDataService {
 
     const newAlbum = [...this.getAlbums(artistName)];
     this.albumsBehavior.next(newAlbum);
+  }
+
+  updateAlbum(album: Album) {
+    //console.log('antes' + JSON.stringify(this.albums));
+    this.albums.forEach( artistAlbum => {
+      console.log(artistAlbum.id);
+      console.log(album.id);
+      if(artistAlbum.id == album.id) { // quando se edita o title deixa de entrar nest ciclo, ver pelo id unico 
+        // console.log('album que foi editado' + JSON.stringify(album));
+        // console.log('album que ja existia' + JSON.stringify(artistAlbum));
+        artistAlbum.title = album.title;
+        artistAlbum.description = album.description;
+        artistAlbum.songs = album.songs;
+        //console.log('depois' + JSON.stringify(this.albums));
+      }
+    });
+    
+    const newAlbum = [...this.albums];
+    this.albumsBehavior.next(newAlbum);    
+    //console.log(this.albumsBehavior.getValue());
   }
 }

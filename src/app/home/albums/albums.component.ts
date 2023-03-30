@@ -14,7 +14,7 @@ import { AlbumFormDialogComponent } from '../../shared/album-form-dialog/album-f
 })
 export class AlbumsComponent implements OnInit, OnDestroy {
   curentArtist!: string;
-  albums!: Album[];
+  albums: Album[] = [];
   paramsSubscription!: Subscription;
   albumForm!: FormGroup;
 
@@ -34,13 +34,15 @@ export class AlbumsComponent implements OnInit, OnDestroy {
 
     this.data.albums$.subscribe((albums) => {
       this.albums = albums;
+      console.log(albums);
+      
     });
   }
 
   addFavorite(i: number) {
     if (this.albums != undefined) {
       this.albums[i].favorite = !this.albums[i].favorite;
-      console.log(this.albums[i].favorite);
+      //console.log(this.albums[i].favorite);
     }
   }
 
@@ -67,15 +69,8 @@ export class AlbumsComponent implements OnInit, OnDestroy {
       data: album,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result.title != '') {
-        this.data.addAlbum(
-          this.curentArtist,
-          result.title,
-          result.description,
-          result.songs
-        );
-      }
+    dialogRef.afterClosed().subscribe((albumEdited: Album) => {
+      this.data.updateAlbum(albumEdited);
     });
   }
 

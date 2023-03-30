@@ -1,10 +1,12 @@
 export interface Artist {
+  array: any;
   name: string;
   albums: Album[];
   description: string;
 }
 
 export interface Album {
+  id: string,
   title: string;
   image: string;
   songs: Song[];

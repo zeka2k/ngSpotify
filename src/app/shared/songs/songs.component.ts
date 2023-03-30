@@ -21,6 +21,7 @@ export class SongsComponent implements OnInit {
   constructor(private data: GetDataService) {}
 
   ngOnInit(): void {
+    //passar musicas por input e usar ngOnchange
     this.albumSongs = this.data.getSongs(this.curentAlbum);
     //console.log(this.albumSongs);
     
