@@ -17,6 +17,9 @@ const routes: Routes = [
         component: AlbumsComponent,
       },
     ],
+    providers: [
+      ArtistsResolver
+    ]
   },
 ];
 

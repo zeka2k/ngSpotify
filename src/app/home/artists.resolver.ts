@@ -4,13 +4,15 @@ import {
   Resolve,
   RouterStateSnapshot,
 } from '@angular/router';
-import { first, Observable, tap } from 'rxjs';
-import {AppState} from '../reducers';
+import { finalize, first, Observable, tap } from 'rxjs';
+import { AppState } from '../reducers';
 import { Store } from '@ngrx/store';
 import { loadAllArtists } from './artist.actions';
 
 @Injectable()
 export class ArtistsResolver implements Resolve<any> {
+  loading = false;
+
   constructor(private store: Store<AppState>) {}
 
   resolve(
@@ -19,9 +21,13 @@ export class ArtistsResolver implements Resolve<any> {
   ): Observable<any> {
     return this.store.pipe(
       tap(() => {
-        this.store.dispatch(loadAllArtists());
+        if (!this.loading) {
+          this.loading = true;
+          this.store.dispatch(loadAllArtists());
+        }
       }),
-      first()
+      first(),
+      finalize(() => this.loading = false)
     );
   }
 }

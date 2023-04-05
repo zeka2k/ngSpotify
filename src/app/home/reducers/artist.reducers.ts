@@ -15,7 +15,7 @@ export const initialCoursesState = adapter.getInitialState({
   allCoursesLoaded: false,
 });
 
-export const coursesReducer = createReducer(
+export const artistReducer = createReducer(
   initialCoursesState,
 
   on(ArtistActions.allArtistsLoaded, (state, action) =>
