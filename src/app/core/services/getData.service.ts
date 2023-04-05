@@ -68,6 +68,7 @@ export class GetDataService {
 
     this.artistList.forEach((artist) => {
       if (artist.name == artistName) {
+        //album.id = uuid();
         artist.albums.push(album);
       }
     });

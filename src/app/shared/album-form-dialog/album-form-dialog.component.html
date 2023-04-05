@@ -67,9 +67,9 @@
       mat-button
       color="primary"
       type="submit"
+      [disabled]="form.invalid"
       (click)="onSubmit()"
     >{{ data ? 'Edit' : 'Add' }}</button>
   </div>
   </form>
 </div>
-<!-- [disabled]="data.albumForm.invalid" -->

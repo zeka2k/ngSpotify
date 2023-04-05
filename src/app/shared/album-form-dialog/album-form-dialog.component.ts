@@ -5,6 +5,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Album, Song } from 'src/app/core/services/artist';
 import { GetDataService } from 'src/app/core/services/getData.service';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'ngSpotify-album-form-dialog',
@@ -40,6 +41,7 @@ export class AlbumFormDialogComponent {
         title: '',
         description: '',
         songs: this.fb.array([this.createSongFormGroup()]),
+        //id: uuid(),
       });
     }
   }
@@ -49,14 +51,14 @@ export class AlbumFormDialogComponent {
   createSongFormGroup(): FormGroup {
     return this.fb.group({
       songName: ['', Validators.required],
-      songLength: ['', Validators.required],
+      songLength: ['', [Validators.required, Validators.pattern("^[0-5]?[0-9]:[0-5][0-9]$")]],
     });
   }
 
   editSongFormGroup(data: Song): FormGroup {
     return this.fb.group({
       songName: [data.title, Validators.required],
-      songLength: [data.length, Validators.required],
+      songLength: [data.length, [Validators.required, Validators.pattern("^[0-5]?[0-9]:[0-5][0-9]$")]],
     });
   }
 
@@ -88,7 +90,13 @@ export class AlbumFormDialogComponent {
     const songs: Song[] = [];
     const title = this.getTitle;
     const description = this.getDescription;
-    const id = this.data.id;
+    let id = '';
+    
+    if(this.data) {
+      id = this.data.id;
+    } else {
+      id = uuid();
+    }
 
     this.getSongs.controls.forEach((control) => {
       songs.push(Song.fromForm(control.value));
@@ -102,3 +110,4 @@ export class AlbumFormDialogComponent {
     });
   }
 }
+
