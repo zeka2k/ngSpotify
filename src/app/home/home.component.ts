@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Artist } from '../core/services/artist';
-import { GetDataService } from '../core/services/getData.service';
+import { AppState } from '../reducers';
+import {select, Store} from '@ngrx/store';
+import { selectAllArtists } from '../core/store/selectors/artists.selectors';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'ngSpotify-home',
@@ -8,11 +12,17 @@ import { GetDataService } from '../core/services/getData.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  albumList!: Artist[];
+  albumList$!: Observable<Artist[]>;
+  artists!: Artist[];
 
-  constructor(private data: GetDataService) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.albumList = this.data.getArtists();
+    // this.albumList = this.data.getArtists();
+
+    this.albumList$ = this.store.pipe(select(selectAllArtists));
+    this.albumList$.subscribe(artists => {
+      this.artists = artists;
+    });
   }
 }

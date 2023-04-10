@@ -26,4 +26,4 @@ export const artistsReducer = createReducer(
   //     adapter.updateOne(action.update, state) )
 );
 
-//export const { selectAll } = adapter.getSelectors();
+export const { selectAll } = adapter.getSelectors();
