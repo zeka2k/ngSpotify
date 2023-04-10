@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { reducers, metaReducers } from './reducers';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
       logOnly: environment.production,
     }),
     StoreRouterConnectingModule.forRoot(),
+    EffectsModule.forRoot([]),
   ],
   bootstrap: [AppComponent],
 })

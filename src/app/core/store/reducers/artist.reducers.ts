@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { Artist } from 'src/app/core/services/artist';
-import { ArtistActions } from '../action-type';
+import { ArtistActions } from '../actions/action-type';
 
 export interface CoursesState extends EntityState<Artist> {
   allCoursesLoaded: boolean;

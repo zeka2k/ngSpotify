@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Artist } from '../core/services/artist';
+import { Artist } from '../../services/artist';
 
 export const loadAllArtists = createAction(
   '[Artist Resolver] Load All Artists'

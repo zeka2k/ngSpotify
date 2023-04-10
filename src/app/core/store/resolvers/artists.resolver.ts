@@ -5,9 +5,9 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { finalize, first, Observable, tap } from 'rxjs';
-import { AppState } from '../reducers';
+import { AppState } from '../../../reducers';
 import { Store } from '@ngrx/store';
-import { loadAllArtists } from './artist.actions';
+import { loadAllArtists } from '../actions/artist.actions';
 
 @Injectable()
 export class ArtistsResolver implements Resolve<any> {
