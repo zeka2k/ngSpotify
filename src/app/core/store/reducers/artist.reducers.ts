@@ -3,23 +3,23 @@ import { createReducer, on } from '@ngrx/store';
 import { Artist } from 'src/app/core/services/artist';
 import { ArtistActions } from '../actions/action-type';
 
-export interface CoursesState extends EntityState<Artist> {
-  allCoursesLoaded: boolean;
+export interface ArtistsState extends EntityState<Artist> {
+  allArtistsLoaded: boolean;
 }
 
 export const adapter = createEntityAdapter<Artist>({
   // sortComparer: compareCourses,
 });
 
-export const initialCoursesState = adapter.getInitialState({
-  allCoursesLoaded: false,
+export const initialArtistsState = adapter.getInitialState({
+  allArtistsLoaded: false,
 });
 
 export const artistReducer = createReducer(
-  initialCoursesState,
+  initialArtistsState,
 
   on(ArtistActions.allArtistsLoaded, (state, action) =>
-    adapter.setAll(action.artists, { ...state, allCoursesLoaded: true })
+    adapter.setAll(action.artists, { ...state, allArtistsLoaded: true })
   )
 
   // on(ArtistActions.courseUpdated, (state, action) =>

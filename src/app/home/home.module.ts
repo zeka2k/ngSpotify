@@ -7,6 +7,8 @@ import { HomeRoutingModule } from "./home-routing.module";
 import { HomeComponent } from "./home.component";
 import { ArtistsEffects } from "../core/store/effects/artists.effects";
 import {EffectsModule} from "@ngrx/effects";
+import { StoreModule } from '@ngrx/store';
+import { artistReducer } from "../core/store/reducers/artist.reducers";
 
 @NgModule({
   declarations: [HomeComponent, AlbumsComponent],
@@ -14,7 +16,8 @@ import {EffectsModule} from "@ngrx/effects";
     CommonModule,
     HomeRoutingModule,
     SharedModule,
-    EffectsModule.forFeature([ArtistsEffects])
+    EffectsModule.forFeature([ArtistsEffects]),
+    StoreModule.forFeature('artists', artistReducer),
   ],
   providers: [ArtistsResolver]
 })
