@@ -10,3 +10,8 @@ export const selectAllArtists = createSelector(
   selectArtistsState,
   fromArtists.selectAll
 );
+
+export const areArtistsLoaded = createSelector(
+  selectArtistsState,
+  state => state.allArtistsLoaded
+);

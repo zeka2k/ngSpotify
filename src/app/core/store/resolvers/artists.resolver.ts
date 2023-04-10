@@ -4,10 +4,11 @@ import {
   Resolve,
   RouterStateSnapshot,
 } from '@angular/router';
-import { finalize, first, Observable, tap } from 'rxjs';
+import { filter, finalize, first, Observable, tap } from 'rxjs';
 import { AppState } from '../../../reducers';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { loadAllArtists } from '../actions/artist.actions';
+import { areArtistsLoaded } from '../selectors/artists.selectors';
 
 @Injectable()
 export class ArtistsResolver implements Resolve<any> {
@@ -20,12 +21,14 @@ export class ArtistsResolver implements Resolve<any> {
     state: RouterStateSnapshot
   ): Observable<any> {
     return this.store.pipe(
-      tap(() => {
-        if (!this.loading) {
+      select(areArtistsLoaded),
+      tap(artistsLoaded => {
+        if (!this.loading && !artistsLoaded) {
           this.loading = true;
           this.store.dispatch(loadAllArtists());
         }
       }),
+      filter(areArtistsLoaded => areArtistsLoaded),
       first(),
       finalize(() => this.loading = false)
     );
