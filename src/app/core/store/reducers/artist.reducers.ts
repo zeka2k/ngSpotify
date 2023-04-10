@@ -15,7 +15,7 @@ export const initialArtistsState = adapter.getInitialState({
   allArtistsLoaded: false,
 });
 
-export const artistReducer = createReducer(
+export const artistsReducer = createReducer(
   initialArtistsState,
 
   on(ArtistActions.allArtistsLoaded, (state, action) =>
@@ -26,4 +26,4 @@ export const artistReducer = createReducer(
   //     adapter.updateOne(action.update, state) )
 );
 
-export const { selectAll } = adapter.getSelectors();
+//export const { selectAll } = adapter.getSelectors();
