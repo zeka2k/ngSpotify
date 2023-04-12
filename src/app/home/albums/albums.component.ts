@@ -4,8 +4,12 @@ import { Subscription } from 'rxjs';
 import { Album } from '../../core/services/artist';
 import { GetDataService } from '../../core/services/getData.service';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { AlbumFormDialogComponent } from '../../shared/album-form-dialog/album-form-dialog.component';
+import { AppState } from 'src/app/reducers';
+import {Store} from '@ngrx/store';
+import { Update } from '@ngrx/entity';
+import { albumUpdated } from 'src/app/core/store/actions/albums.actions';
 
 @Component({
   selector: 'ngSpotify-albums',
@@ -22,7 +26,7 @@ export class AlbumsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private data: GetDataService,
     private dialog: MatDialog,
-    private fb: FormBuilder
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +74,11 @@ export class AlbumsComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe((albumEdited: Album) => {
+      // const update: Update<Album> = {
+      //   id: albumEdited.id,
+      //   changes: albumEdited
+      // }
+      // this.store.dispatch(albumUpdated({update}));
       this.data.updateAlbum(albumEdited);
     });
   }

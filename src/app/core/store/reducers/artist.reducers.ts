@@ -21,9 +21,6 @@ export const artistsReducer = createReducer(
   on(ArtistActions.allArtistsLoaded, (state, action) =>
     adapter.setAll(action.artists, { ...state, allArtistsLoaded: true })
   )
-
-  // on(ArtistActions.courseUpdated, (state, action) =>
-  //     adapter.updateOne(action.update, state) )
 );
 
 export const { selectAll } = adapter.getSelectors();

@@ -6,6 +6,10 @@ import { Subscription } from 'rxjs';
 import { Album, Song } from 'src/app/core/services/artist';
 import { GetDataService } from 'src/app/core/services/getData.service';
 import { v4 as uuid } from 'uuid';
+import { AppState } from 'src/app/reducers';
+import {Store} from '@ngrx/store';
+import { Update } from '@ngrx/entity';
+import { albumUpdated } from 'src/app/core/store/actions/albums.actions';
 
 @Component({
   selector: 'ngSpotify-album-form-dialog',
@@ -16,12 +20,12 @@ export class AlbumFormDialogComponent {
   curentArtist!: string;
   paramsSubscription!: Subscription;
   form: FormGroup;
+  album!: Album;
 
   constructor(
     public dialogRef: MatDialogRef<AlbumFormDialogComponent>,
-    private service: GetDataService,
     private fb: FormBuilder,
-    private route: ActivatedRoute,
+    private store: Store<AppState>,
     @Inject(MAT_DIALOG_DATA) public data: Album
   ) {
     if (data) {
@@ -102,11 +106,22 @@ export class AlbumFormDialogComponent {
       songs.push(Song.fromForm(control.value));
     });
 
+    const album: Album = {
+      ...this.album,
+      ...this.form.value
+    };
+
+    const update: Update<Album> = {
+      id: album.id,
+      changes: album
+    };
+
+    this.store.dispatch(albumUpdated({update}));
     this.dialogRef.close({
-      id: id,
-      title: title,
-      description: description,
-      songs: songs,
+      // id: id,
+      // title: title,
+      // description: description,
+      // songs: songs,
     });
   }
 }
