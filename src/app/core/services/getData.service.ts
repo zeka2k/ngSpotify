@@ -21,11 +21,11 @@ export class GetDataService {
       this.artistList.push(element);
     });
     this.artistList.forEach((artist: Artist) => {
-      for(let album of artist.albums) {
+      for (let album of artist.albums) {
         const id = uuid();
         album.id = id;
       }
-    })
+    });
   }
 
   getArtists(): Artist[] {
@@ -46,6 +46,18 @@ export class GetDataService {
     return this.albums;
   }
 
+  getAlbumsStore(): Album[] {
+    this.albums = [];
+
+    this.artistList.forEach((artist: Artist) => {
+      for (let album of artist.albums) {
+        this.albums.push(album);
+      }
+    });
+    console.log('estou aqui' + this.albums);
+    return this.albums;
+  }
+
   getSongs(album: string): Song[] {
     //console.log(album); // esta no album correto mas nao entra no ciclo pois this.albums so e chamado pelo o liked-albums que so nos envia albuns de um dados artista e nao de todos
     this.songs = [];
@@ -62,7 +74,12 @@ export class GetDataService {
     return this.songs;
   }
 
-  addAlbum(artistName: string, title: string, description: string,songs: Song[]) {
+  addAlbum(
+    artistName: string,
+    title: string,
+    description: string,
+    songs: Song[]
+  ) {
     const album = new Album(title, description, songs);
     //console.log(album);
 
@@ -79,10 +96,10 @@ export class GetDataService {
 
   updateAlbum(album: Album) {
     //console.log('antes' + JSON.stringify(this.albums));
-    this.albums.forEach( artistAlbum => {
+    this.albums.forEach((artistAlbum) => {
       console.log(artistAlbum.id);
       console.log(album.id);
-      if(artistAlbum.id == album.id) {
+      if (artistAlbum.id == album.id) {
         // console.log('album que foi editado' + JSON.stringify(album));
         // console.log('album que ja existia' + JSON.stringify(artistAlbum));
         artistAlbum.title = album.title;
@@ -91,9 +108,9 @@ export class GetDataService {
         //console.log('depois' + JSON.stringify(this.albums));
       }
     });
-    
+
     const newAlbum = [...this.albums];
-    this.albumsBehavior.next(newAlbum);    
+    this.albumsBehavior.next(newAlbum);
     //console.log(this.albumsBehavior.getValue());
   }
 }

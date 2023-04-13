@@ -1,6 +1,6 @@
 [
   {
-    "id": 0,
+    "id": "0",
     "name": "The Weeknd",
     "albums": [
       {
@@ -94,7 +94,7 @@
     ]
   },
   {
-    "id": 1,
+    "id": "1",
     "name": "Radiohead",
     "albums": [
       {
@@ -216,7 +216,7 @@
     ]
   },
   {
-    "id": 2,
+    "id": "2",
     "name": "Portishead",
     "albums": [
       {

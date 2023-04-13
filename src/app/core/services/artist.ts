@@ -1,4 +1,5 @@
 export interface Artist {
+  id: string;
   array: any;
   name: string;
   albums: Album[];

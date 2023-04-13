@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AlbumsState } from '../reducers/album.reducers';
-import * as fromAalbums from '../reducers/album.reducers';
+import * as fromAlbums from '../reducers/album.reducers';
 
 export const selectAlbumsState =
   createFeatureSelector<AlbumsState>('albums');
@@ -8,7 +8,7 @@ export const selectAlbumsState =
 
 export const selectAllAlbums = createSelector(
   selectAlbumsState,
-  fromAalbums.selectAll
+  fromAlbums.selectAll
 );
 
 export const areAlbumsLoaded = createSelector(

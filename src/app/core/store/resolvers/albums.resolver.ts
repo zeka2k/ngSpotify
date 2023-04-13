@@ -28,7 +28,7 @@ export class AlbumsResolver implements Resolve<any> {
           this.store.dispatch(loadAllAlbums());
         }
       }),
-      filter(areAlbumssLoaded => areAlbumssLoaded),
+      filter(areAlbumsLoaded => areAlbumsLoaded),
       first(),
       finalize(() => this.loading = false)
     );

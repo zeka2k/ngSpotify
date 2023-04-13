@@ -11,6 +11,8 @@ import { reducers, metaReducers } from './reducers';
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
+import { ArtistsEffects } from './core/store/effects/artists.effects';
+import { AlbumsEffects } from './core/store/effects/albums.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +27,7 @@ import { EffectsModule } from '@ngrx/effects';
       logOnly: environment.production,
     }),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects]),
   ],
   bootstrap: [AppComponent],
 })

@@ -12,7 +12,7 @@ export class AlbumsEffects {
     this.actions$.pipe(
       ofType(AlbumActions.loadAllAlbums),
       concatMap(() =>
-        of(this.data.getAlbums('the wekend')).pipe(
+        of(this.data.getAlbumsStore()).pipe(
           map((albums: Album[]) => allAlbumsLoaded({ albums }))
         )
       )
