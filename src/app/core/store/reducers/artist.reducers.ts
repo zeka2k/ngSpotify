@@ -8,7 +8,7 @@ export interface ArtistsState extends EntityState<Artist> {
 }
 
 export const adapter = createEntityAdapter<Artist>({
-  // sortComparer: compareCourses,
+  
 });
 
 export const initialArtistsState = adapter.getInitialState({

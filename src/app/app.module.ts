@@ -13,6 +13,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { ArtistsEffects } from './core/store/effects/artists.effects';
 import { AlbumsEffects } from './core/store/effects/albums.effects';
+import { SongsEffects } from './core/store/effects/songs.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,7 @@ import { AlbumsEffects } from './core/store/effects/albums.effects';
       logOnly: environment.production,
     }),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects]),
+    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects, SongsEffects]),
   ],
   bootstrap: [AppComponent],
 })

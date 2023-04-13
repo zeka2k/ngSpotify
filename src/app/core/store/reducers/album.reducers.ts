@@ -8,7 +8,7 @@ export interface AlbumsState extends EntityState<Album> {
 }
 
 export const adapter = createEntityAdapter<Album>({
-  // sortComparer: compareCourses,
+  
 });
 
 export const initialAlbumsState = adapter.getInitialState({

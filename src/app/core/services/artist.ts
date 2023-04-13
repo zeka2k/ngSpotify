@@ -15,6 +15,13 @@ export interface Album {
   favorite: boolean;
 }
 
+export interface Song {
+  id: string,
+  title: string;
+  length: string;
+  favorite: boolean;
+}
+
 export class Album {
   constructor(title: string, descripton: string, songs: Song[]) {
     this.title = title;
@@ -29,10 +36,6 @@ export interface SongForm {
 }
 
 export class Song {
-  public title: string;
-  public length: string;
-  public favorite: boolean;
-
   constructor(title: string, length: string, favorite: boolean) {
     this.title = title;
     this.length = length;

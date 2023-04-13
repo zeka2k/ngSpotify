@@ -4,6 +4,7 @@ import { AlbumsComponent } from './albums/albums.component';
 import { ArtistsResolver } from '../core/store/resolvers/artists.resolver';
 import { HomeComponent } from './home.component';
 import { AlbumsResolver } from '../core/store/resolvers/albums.resolver';
+import { SongsResolver } from '../core/store/resolvers/songs.resolver';
 
 const routes: Routes = [
   {
@@ -11,7 +12,8 @@ const routes: Routes = [
     component: HomeComponent,
     resolve: {
       artists: ArtistsResolver,
-      albums: AlbumsResolver
+      albums: AlbumsResolver,
+      songs: SongsResolver
     },
     children: [
       {
@@ -21,7 +23,8 @@ const routes: Routes = [
     ],
     providers: [
       ArtistsResolver,
-      AlbumsResolver
+      AlbumsResolver,
+      SongsResolver
     ]
   },
 ];

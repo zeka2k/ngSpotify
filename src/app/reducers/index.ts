@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { routerReducer } from '@ngrx/router-store';
 import { artistsReducer } from "../core/store/reducers/artist.reducers";
 import { albumsReducer } from '../core/store/reducers/album.reducers';
+import { songsReducer } from '../core/store/reducers/song.reducers';
 
 export interface AppState {
 }
@@ -10,7 +11,8 @@ export interface AppState {
 export const reducers: ActionReducerMap<AppState> = {
   router: routerReducer,
   artists: artistsReducer,
-  albums: albumsReducer
+  albums: albumsReducer,
+  songs: songsReducer
 };
 
 export function logger(reducer: ActionReducer<any>): ActionReducer<any> {

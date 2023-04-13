@@ -24,6 +24,10 @@ export class GetDataService {
       for (let album of artist.albums) {
         const id = uuid();
         album.id = id;
+        for (let song of album.songs) {
+          const id = uuid();
+          song.id = id;
+        }
       }
     });
   }
@@ -54,8 +58,22 @@ export class GetDataService {
         this.albums.push(album);
       }
     });
-    console.log('estou aqui' + this.albums);
+    
     return this.albums;
+  }
+
+  getSongsStore(): Song[] {
+    this.songs = [];
+
+    this.artistList.forEach((artist: Artist) => {
+      for (let album of artist.albums) {
+        for (let song of album.songs) {
+          this.songs.push(song);
+        }
+      }
+    });
+
+    return this.songs;
   }
 
   getSongs(album: string): Song[] {
