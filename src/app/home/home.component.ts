@@ -13,16 +13,10 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   albumList$!: Observable<Artist[]>;
-  artists!: Artist[];
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    // this.albumList = this.data.getArtists();
-
     this.albumList$ = this.store.pipe(select(selectAllArtists));
-    this.albumList$.subscribe(artists => {
-      this.artists = artists;
-    });
   }
 }

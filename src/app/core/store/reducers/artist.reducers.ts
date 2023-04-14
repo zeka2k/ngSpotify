@@ -23,4 +23,4 @@ export const artistsReducer = createReducer(
   )
 );
 
-export const { selectAll } = adapter.getSelectors();
+export const { selectAll, selectEntities } = adapter.getSelectors();

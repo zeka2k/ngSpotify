@@ -15,3 +15,15 @@ export const areSongsLoaded = createSelector(
   selectSongsState,
   state => state.allSongsLoaded
 );
+
+export const selectSongsEntities = createSelector(
+  selectSongsState,
+  fromSongs.selectEntities
+);
+
+export const selectById = (id:string) => createSelector(
+  selectSongsEntities,
+  songEntities => {
+    return songEntities[id];
+  }
+);

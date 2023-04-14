@@ -4,6 +4,8 @@ import { routerReducer } from '@ngrx/router-store';
 import { artistsReducer } from "../core/store/reducers/artist.reducers";
 import { albumsReducer } from '../core/store/reducers/album.reducers';
 import { songsReducer } from '../core/store/reducers/song.reducers';
+//import { likedAlbumsReducer } from '../core/store/reducers/liked-album.reducers';
+//import { likedSongssReducer } from '../core/store/reducers/liked-album.reducers';
 
 export interface AppState {
 }
@@ -12,7 +14,9 @@ export const reducers: ActionReducerMap<AppState> = {
   router: routerReducer,
   artists: artistsReducer,
   albums: albumsReducer,
-  songs: songsReducer
+  songs: songsReducer,
+  //likedAlbums: likedAlbumsReducer,
+  //likedSongs: likedSongsReducer,
 };
 
 export function logger(reducer: ActionReducer<any>): ActionReducer<any> {

@@ -22,4 +22,4 @@ export const songsReducer = createReducer(
     adapter.setAll(action.songs, { ...state, allSongsLoaded: true }))
 );
 
-export const { selectAll } = adapter.getSelectors();
+export const { selectAll, selectEntities } = adapter.getSelectors();

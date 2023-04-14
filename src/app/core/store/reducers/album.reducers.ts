@@ -25,4 +25,4 @@ export const albumsReducer = createReducer(
     adapter.updateOne(action.update, state))
 );
 
-export const { selectAll } = adapter.getSelectors();
+export const { selectAll, selectEntities } = adapter.getSelectors();

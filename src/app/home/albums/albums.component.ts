@@ -1,15 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { Album } from '../../core/services/artist';
+import { Observable, Subscription } from 'rxjs';
+import { Album, Artist } from '../../core/services/artist';
 import { GetDataService } from '../../core/services/getData.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
 import { AlbumFormDialogComponent } from '../../shared/album-form-dialog/album-form-dialog.component';
 import { AppState } from 'src/app/reducers';
-import {Store} from '@ngrx/store';
-import { Update } from '@ngrx/entity';
-import { albumUpdated } from 'src/app/core/store/actions/albums.actions';
+import {Store, select} from '@ngrx/store';
+import { selectArtistById } from 'src/app/core/store/selectors/artists.selectors';
 
 @Component({
   selector: 'ngSpotify-albums',
@@ -18,7 +17,8 @@ import { albumUpdated } from 'src/app/core/store/actions/albums.actions';
 })
 export class AlbumsComponent implements OnInit, OnDestroy {
   curentArtist!: string;
-  albums: Album[] = [];
+  artists$!: Observable<Artist | any>;
+  albums!: Album[];
   paramsSubscription!: Subscription;
   albumForm!: FormGroup;
 
@@ -26,21 +26,24 @@ export class AlbumsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private data: GetDataService,
     private dialog: MatDialog,
-    private store: Store<AppState>
+    public store$: Store<AppState>
   ) {}
 
   ngOnInit(): void {
     this.paramsSubscription = this.route.params.subscribe((params: Params) => {
-      this.curentArtist = params['name'];
-      this.albums = this.data.getAlbums(this.curentArtist);
+      this.curentArtist = params['id'];
+
+      this.artists$ = this.store$.pipe(select(selectArtistById(this.curentArtist)));
+      //console.log(this.store$);
+
+      //this.albums = this.data.getAlbums(this.curentArtist);
       //console.log(this.albums);
     });
 
-    this.data.albums$.subscribe((albums) => {
-      this.albums = albums;
-      console.log(albums);
-      
-    });
+    // this.data.albums$.subscribe((albums) => {
+    //   this.albums = albums;
+    //   //console.log(albums);
+    // });
   }
 
   addFavorite(i: number) {

@@ -15,3 +15,15 @@ export const areAlbumsLoaded = createSelector(
   selectAlbumsState,
   state => state.allAlbumsLoaded
 );
+
+export const selectAlbumsEntities = createSelector(
+  selectAlbumsState,
+  fromAlbums.selectEntities
+);
+
+export const selectById = (id:string) => createSelector(
+  selectAlbumsEntities,
+  albumEntities => {
+    return albumEntities[id];
+  }
+);

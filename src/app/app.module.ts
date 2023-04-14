@@ -14,6 +14,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { ArtistsEffects } from './core/store/effects/artists.effects';
 import { AlbumsEffects } from './core/store/effects/albums.effects';
 import { SongsEffects } from './core/store/effects/songs.effects';
+//import { LikedAlbumsEffects } from './core/store/effects/liked-albums.effects';
+//import { LikedSongsEffects } from './core/store/effects/liked-songs.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,13 +24,19 @@ import { SongsEffects } from './core/store/effects/songs.effects';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    StoreModule.forRoot(reducers, {metaReducers}),
+    StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([ArtistsEffects, AlbumsEffects, SongsEffects]),
+    EffectsModule.forRoot([
+      ArtistsEffects,
+      AlbumsEffects,
+      SongsEffects, 
+      //LikedAlbumsEffects,
+      //LikedSongsEffects
+    ]),
   ],
   bootstrap: [AppComponent],
 })

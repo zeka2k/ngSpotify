@@ -15,3 +15,15 @@ export const areArtistsLoaded = createSelector(
   selectArtistsState,
   state => state.allArtistsLoaded
 );
+
+export const selectArtistsEntities = createSelector(
+  selectArtistsState,
+  fromArtists.selectEntities
+);
+
+export const selectArtistById = (id:string) => createSelector(
+  selectArtistsEntities,
+  artistEntities => {
+    return artistEntities[id];
+  }
+);
