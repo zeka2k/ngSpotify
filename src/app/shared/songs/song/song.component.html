@@ -1,16 +1,12 @@
-<tr *ngIf="song$ | async as song">
-  <td>{{ song.title }}</td>
-  <td>{{ song.length }}s</td>
-  <td>
-    <div *ngIf="song.favorite == true">
-      <button class="btn btn-edit" (click)="addFavorite(song)">
-        <span class="material-symbols-outlined">favorite</span>
-      </button>
-    </div>
-    <div *ngIf="song.favorite == false">
-      <button class="btn btn-edit" (click)="addFavorite(song)">
-        <span class="material-symbols-outlined">heart_plus</span>
-      </button>
-    </div>
-  </td>
-</tr>
+<div *ngIf="song$ | async as song">
+  <div *ngIf="song.favorite == true">
+    <button class="btn btn-edit" (click)="addFavorite(song)">
+      <span class="material-symbols-outlined">favorite</span>
+    </button>
+  </div>
+  <div *ngIf="song.favorite == false">
+    <button class="btn btn-edit" (click)="addFavorite(song)">
+      <span class="material-symbols-outlined">heart_plus</span>
+    </button>
+  </div>
+</div>
