@@ -1,4 +1,4 @@
-<div *ngFor="let album of albums; let i = index">
+<div *ngIf="album$ | async as album">
   <h2>
     {{ album.title }}
     <span
@@ -8,12 +8,12 @@
       >info</span
     >
     <div *ngIf="album.favorite == true">
-      <button class="btn btn-edit" (click)="addFavorite(i)">
+      <button class="btn btn-edit" (click)="addFavorite(album)">
         <span class="material-symbols-outlined">favorite</span>
       </button>
     </div>
     <div *ngIf="album.favorite == false">
-      <button class="btn btn-edit" (click)="addFavorite(i)">
+      <button class="btn btn-edit" (click)="addFavorite(album)">
         <span class="material-symbols-outlined">heart_plus</span>
       </button>
     </div>
@@ -27,6 +27,6 @@
     [curentAlbum]="album.title"
     [songs]="album.songs"
   ></ngSpotify-songs>
+  <br />
+  <button mat-raised-button (click)="openDialog()">Add Album</button>
 </div>
-<br />
-<button mat-raised-button (click)="openDialog()">Add Album</button>

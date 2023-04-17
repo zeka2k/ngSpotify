@@ -1,38 +1,8 @@
 <div *ngIf="artists$ | async as artist">
-  <ngSpotify-album 
-  [albums]="artist.albums"
-  [curentArtist]="artist.id"
-  ></ngSpotify-album>
-  <!-- <div *ngFor="let album of artist.albums; let i = index">
-    <h2>
-      {{ album.title }}
-      <span
-        class="material-symbols-outlined"
-        type="button"
-        (click)="openEditDialog(album)"
-        >info</span
-      >
-      <div *ngIf="album.favorite == true">
-        <button class="btn btn-edit" (click)="addFavorite(i)">
-          <span class="material-symbols-outlined">favorite</span>
-        </button>
-      </div>
-      <div *ngIf="album.favorite == false">
-        <button class="btn btn-edit" (click)="addFavorite(i)">
-          <span class="material-symbols-outlined">heart_plus</span>
-        </button>
-      </div>
-    </h2>
-    <div>
-      <img [src]="album.image" alt="" />
-    </div>
-    <h2>Album description</h2>
-    <p>{{ album.description }}</p>
-    <ngSpotify-songs
-      [curentAlbum]="album.title"
-      [songs]="album.songs"
-    ></ngSpotify-songs>
+  <div *ngFor="let album of artist.albums">
+    <ngSpotify-album
+      [albumId]="album.id"
+      [curentArtist]="artist.id"
+    ></ngSpotify-album>
   </div>
-  <br />
-  <button mat-raised-button (click)="openDialog()">Add Album</button> -->
 </div>

@@ -14,6 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { ArtistsEffects } from './core/store/effects/artists.effects';
 import { AlbumsEffects } from './core/store/effects/albums.effects';
 import { SongsEffects } from './core/store/effects/songs.effects';
+import { SongComponent } from './shared/songs/song/song.component';
 //import { LikedAlbumsEffects } from './core/store/effects/liked-albums.effects';
 //import { LikedSongsEffects } from './core/store/effects/liked-songs.effects';
 

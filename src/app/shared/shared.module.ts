@@ -13,9 +13,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { SongComponent } from './songs/song/song.component';
 
 @NgModule({
-  declarations: [SongsComponent, AlbumFormDialogComponent],
+  declarations: [SongsComponent, SongComponent, AlbumFormDialogComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,

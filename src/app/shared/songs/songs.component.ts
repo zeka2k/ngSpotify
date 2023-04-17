@@ -22,9 +22,6 @@ export class SongsComponent implements OnInit, OnChanges{
   constructor(private data: GetDataService) {}
 
   ngOnInit(): void {
-    //passar musicas por input e usar ngOnchange
-    //console.log(this.songs);
-    
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -38,13 +35,6 @@ export class SongsComponent implements OnInit, OnChanges{
       this.totalSongs = this.songs.length;
       this.minutes = Math.floor(this.totalTime / 60);
       this.seconds = this.totalTime % 60;
-    }
-  }
-
-  addFavorite(i: number) {
-    if (this.songs != undefined) {
-      this.songs[i].favorite = !this.songs[i].favorite;
-      console.log(this.songs[i].favorite);
     }
   }
 }

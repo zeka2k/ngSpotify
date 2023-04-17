@@ -1,20 +1,24 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
 import { Album } from 'src/app/core/services/artist';
 import { GetDataService } from 'src/app/core/services/getData.service';
 import { AppState } from 'src/app/reducers';
 import { AlbumFormDialogComponent } from 'src/app/shared/album-form-dialog/album-form-dialog.component';
 import {Store, select} from '@ngrx/store';
+import { Observable } from 'rxjs/internal/Observable';
+import { selectAlbumsById } from 'src/app/core/store/selectors/albums.selectors';
+import { Update } from '@ngrx/entity';
+import { albumUpdated } from 'src/app/core/store/actions/albums.actions';
 
 @Component({
   selector: 'ngSpotify-album',
   templateUrl: './album.component.html',
   styleUrls: ['./album.component.scss']
 })
-export class AlbumComponent {
-  @Input() albums!: Album[];
+export class AlbumComponent implements OnInit {
+  @Input() albumId!: string;
   @Input() curentArtist!: string;
+  album$!: Observable<Album | any>;
   
   constructor(
     private data: GetDataService,
@@ -22,10 +26,20 @@ export class AlbumComponent {
     public store$: Store<AppState>
   ) {}
 
-  addFavorite(i: number) {
-    if (this.albums != undefined) {
-      this.albums[i].favorite = !this.albums[i].favorite; // usar a store e o selectByIdAlbum para ir buscar o algum
-      //console.log(this.albums[i].favorite);
+  ngOnInit(): void {
+    this.album$ = this.store$.pipe(select(selectAlbumsById(this.albumId)));
+  }
+
+  addFavorite(album: Album) {
+    if (album != undefined) {
+      const update: Update<Album> = {
+        id: album.id,
+        changes: {favorite: !album.favorite}
+      };
+  
+      this.store$.dispatch(albumUpdated({update}));
+      
+      //console.log(album.favorite);
     }
   }
 
@@ -34,16 +48,16 @@ export class AlbumComponent {
       width: '500px',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result.title != '') {
-        this.data.addAlbum(
-          this.curentArtist,
-          result.title,
-          result.description,
-          result.songs
-        );
-      }
-    });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   if (result.title != '') {
+    //     this.data.addAlbum(
+    //       this.curentArtist,
+    //       result.title,
+    //       result.description,
+    //       result.songs
+    //     );
+    //   }
+    // });
   }
 
   openEditDialog(album: Album): void {
@@ -53,11 +67,6 @@ export class AlbumComponent {
     });
 
     dialogRef.afterClosed().subscribe((albumEdited: Album) => {
-      // const update: Update<Album> = {
-      //   id: albumEdited.id,
-      //   changes: albumEdited
-      // }
-      // this.store.dispatch(albumUpdated({update}));
       this.data.updateAlbum(albumEdited);
     });
   }

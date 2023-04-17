@@ -21,7 +21,7 @@ export const selectAlbumsEntities = createSelector(
   fromAlbums.selectEntities
 );
 
-export const selectById = (id:string) => createSelector(
+export const selectAlbumsById = (id:string) => createSelector(
   selectAlbumsEntities,
   albumEntities => {
     return albumEntities[id];

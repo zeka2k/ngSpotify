@@ -1,5 +1,6 @@
 <h2>Songs of {{ curentAlbum }}</h2>
 <h2>Album Total Songs -> {{ totalSongs }} | Total Time -> {{ minutes }}m {{ seconds }}s</h2>
+
 <table class="table">
   <th>Title</th>
   <th>
@@ -8,20 +9,9 @@
     </span>
   </th>
   <th>Favorite</th>
-  <tr *ngFor="let song of songs; let i = index">
-    <td>{{ song.title }}</td>
-    <td>{{ song.length }}s</td>
-    <td>
-      <div *ngIf="song.favorite == true">
-        <button class="btn btn-edit" (click)="addFavorite(i)">
-          <span class="material-symbols-outlined">favorite</span>
-        </button>
-      </div>
-      <div *ngIf="song.favorite == false">
-        <button class="btn btn-edit" (click)="addFavorite(i)">
-          <span class="material-symbols-outlined">heart_plus</span>
-        </button>
-      </div>
-    </td>
+  <tr>
   </tr>
 </table>
+<div *ngFor="let song of songs">
+  <td><ngSpotify-song [songId]="song.id"></ngSpotify-song></td>
+</div>

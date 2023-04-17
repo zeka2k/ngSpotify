@@ -19,7 +19,10 @@ export const songsReducer = createReducer(
   initialSongsState,
 
   on(SongActions.allSongsLoaded, (state, action) =>
-    adapter.setAll(action.songs, { ...state, allSongsLoaded: true }))
+    adapter.setAll(action.songs, { ...state, allSongsLoaded: true })),
+
+  on(SongActions.songUpdated, (state, action) => 
+    adapter.updateOne(action.update, state))
 );
 
 export const { selectAll, selectEntities } = adapter.getSelectors();

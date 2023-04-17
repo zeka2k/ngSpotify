@@ -25,7 +25,7 @@ export class AlbumFormDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<AlbumFormDialogComponent>,
     private fb: FormBuilder,
-    private store: Store<AppState>,
+    private store$: Store<AppState>,
     @Inject(MAT_DIALOG_DATA) public data: Album
   ) {
     if (data) {
@@ -111,18 +111,14 @@ export class AlbumFormDialogComponent {
       ...this.form.value
     };
 
+    console.log(album.id);
     const update: Update<Album> = {
       id: album.id,
       changes: album
     };
 
-    this.store.dispatch(albumUpdated({update}));
-    this.dialogRef.close({
-      // id: id,
-      // title: title,
-      // description: description,
-      // songs: songs,
-    });
+    this.store$.dispatch(albumUpdated({update}));//nao esta a dar update na store 
+    this.dialogRef.close({});
   }
 }
 
