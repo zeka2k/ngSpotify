@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Artist, Song } from '../core/services/artist';
-import { GetDataService } from '../core/services/getData.service';
+import { Album, Artist, Song } from '../core/services/artist';
+import { AppState } from '../reducers';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectAllLikedSongs } from '../core/store/selectors/liked-songs.selectors';
+import { Update } from '@ngrx/entity';
+import { songUpdated } from '../core/store/actions/songs.actions';
 
 @Component({
   selector: 'ngSpotify-liked-songs',
@@ -10,25 +15,25 @@ import { GetDataService } from '../core/services/getData.service';
 export class LikedSongsComponent implements OnInit {
   artists!: Artist[];
   likedSongs!: Song[];
+  songList$!: Observable<Song[]>;
 
-  constructor(private data: GetDataService) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.artists = this.data.getArtists();
-    this.likedSongs = this.artists
-      .map((artist) =>
-        artist.albums
-          .map((album) => album.songs.filter((song) => song.favorite))
-          .flat()
-      )
-      .flat();
+    this.songList$ = this.store.pipe(select(selectAllLikedSongs));
   }
 
   /**----> API Request <----**/
-  addFavorite(k: number) {
-    if (this.artists != undefined && this.likedSongs != undefined) {
-      this.likedSongs[k].favorite = !this.likedSongs[k].favorite;
-      this.likedSongs.splice(k, 1); //to remove the now false favorite song from likedSongs
+  addFavorite(song: Song) {
+    if (song != undefined) {
+      const update: Update<Song> = {
+        id: song.id,
+        changes: {favorite: !song.favorite}
+      };
+  
+      this.store.dispatch(songUpdated({update}));
+      
+      //console.log(album.favorite);
     }
   }
 }

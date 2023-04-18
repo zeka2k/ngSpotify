@@ -5,6 +5,8 @@ import { Album } from '../../services/artist';
 import { GetDataService } from '../../services/getData.service';
 import { LikedAlbumActions } from '../actions/action-type';
 import { allLikedAlbumsLoaded } from '../actions/liked-albums.actions';
+import { AppState } from 'src/app/reducers';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class LikedAlbumsEffects {
@@ -19,5 +21,5 @@ export class LikedAlbumsEffects {
     )
   );
 
-  constructor(private actions$: Actions, private data: GetDataService) {}
+  constructor(private actions$: Actions, private data: GetDataService, private store$: Store<AppState>) {}
 }

@@ -3,7 +3,7 @@ import { LikedAlbumsState } from '../reducers/liked-album.reducers';
 import * as fromLikedAlbums from '../reducers/liked-album.reducers';
 
 export const selectLikedAlbumsState =
-  createFeatureSelector<LikedAlbumsState>('LikedAlbums');
+  createFeatureSelector<LikedAlbumsState>('albums');
 
 export const selectAllLikedAlbums = createSelector(
   selectLikedAlbumsState,
@@ -15,7 +15,7 @@ export const areLikedAlbumsLoaded = createSelector(
   state => state.allLikedAlbumsLoaded
 );
 
-export const selectAlbumsEntities = createSelector(
+export const selectLikedAlbumsEntities = createSelector(
   selectLikedAlbumsState,
   fromLikedAlbums.selectEntities
 );

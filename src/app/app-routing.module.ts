@@ -4,7 +4,7 @@ import { AlbumsResolver } from './core/store/resolvers/albums.resolver';
 import { ArtistsResolver } from './core/store/resolvers/artists.resolver';
 import { SongsResolver } from './core/store/resolvers/songs.resolver';
 import { LikedAlbumsResolver } from './core/store/resolvers/liked-albums.resolver';
-//import { LikedSongsResolver } from './core/store/resolvers/liked-albums.resolver';
+import { LikedSongsResolver } from './core/store/resolvers/liked-songs.resolver';
 
 const routes: Routes = [
   {
@@ -20,14 +20,11 @@ const routes: Routes = [
         artists: ArtistsResolver,
         albums: AlbumsResolver,
         songs: SongsResolver,
-        //likedAlbums: LikedAlbumsResolver,
       },
       providers: [
         ArtistsResolver,
         AlbumsResolver,
         SongsResolver,
-        //LikedAlbumsResolver,
-        //LikedSongsResolver
       ]
   },
   {
@@ -49,6 +46,12 @@ const routes: Routes = [
       import('./liked-songs/liked-songs.module').then(
         (mod) => mod.LikedSongsModule
       ),
+      resolve: {
+        likedSongs: LikedSongsResolver,
+      },
+      providers: [
+        LikedSongsResolver,
+      ]
   }
 ];
 

@@ -5,7 +5,7 @@ import { artistsReducer } from "../core/store/reducers/artist.reducers";
 import { albumsReducer } from '../core/store/reducers/album.reducers';
 import { songsReducer } from '../core/store/reducers/song.reducers';
 import { likedAlbumsReducer } from '../core/store/reducers/liked-album.reducers';
-//import { likedSongssReducer } from '../core/store/reducers/liked-album.reducers';
+import { likedSongsReducer } from '../core/store/reducers/liked-song.reducer';
 
 export interface AppState {
 }
@@ -16,7 +16,7 @@ export const reducers: ActionReducerMap<AppState> = {
   albums: albumsReducer,
   songs: songsReducer,
   likedAlbums: likedAlbumsReducer,
-  //likedSongs: likedSongsReducer,
+  likedSongs: likedSongsReducer,
 };
 
 export function logger(reducer: ActionReducer<any>): ActionReducer<any> {

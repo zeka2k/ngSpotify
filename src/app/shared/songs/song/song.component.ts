@@ -6,6 +6,7 @@ import { AppState } from 'src/app/reducers';
 import { selectSongsById } from 'src/app/core/store/selectors/songs.selectors';
 import { Update } from '@ngrx/entity';
 import { songUpdated } from 'src/app/core/store/actions/songs.actions';
+import { addLikedSong, removeLikedSong } from 'src/app/core/store/actions/liked-songs.actions';
 
 @Component({
   selector: 'ngSpotify-song',
@@ -24,12 +25,19 @@ export class SongComponent {
 
   addFavorite(song: Song) {
     if (song != undefined) {
+      const isFavorite: boolean = !song.favorite;
       const update: Update<Song> = {
         id: song.id,
         changes: { favorite: !song.favorite },
       };
 
       this.store$.dispatch(songUpdated({ update }));
+
+      if(isFavorite) {
+        this.store$.dispatch(addLikedSong({song}));
+      } else {
+        this.store$.dispatch(removeLikedSong({song}));
+      }
     }
   }
 }
