@@ -9,6 +9,8 @@ import { Observable } from 'rxjs/internal/Observable';
 import { selectAlbumsById } from 'src/app/core/store/selectors/albums.selectors';
 import { Update } from '@ngrx/entity';
 import { albumUpdated } from 'src/app/core/store/actions/albums.actions';
+import { LikedAlbumActions } from 'src/app/core/store/actions/action-type';
+import { addLikedAlbum, allLikedAlbumsLoaded, removeLikedAlbum } from 'src/app/core/store/actions/liked-albums.actions';
 
 @Component({
   selector: 'ngSpotify-album',
@@ -32,13 +34,20 @@ export class AlbumComponent implements OnInit {
 
   addFavorite(album: Album) {
     if (album != undefined) {
+      const isFavorite: boolean = !album.favorite;
       const update: Update<Album> = {
         id: album.id,
-        changes: {favorite: !album.favorite}
+        changes: {favorite: isFavorite}
       };
-  
+    
       this.store$.dispatch(albumUpdated({update}));
       
+      if(isFavorite) {
+        this.store$.dispatch(addLikedAlbum({album}));
+      } else {
+        this.store$.dispatch(removeLikedAlbum({album}));
+      }
+
       //console.log(album.favorite);
     }
   }

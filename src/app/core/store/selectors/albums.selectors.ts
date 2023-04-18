@@ -5,7 +5,6 @@ import * as fromAlbums from '../reducers/album.reducers';
 export const selectAlbumsState =
   createFeatureSelector<AlbumsState>('albums');
 
-
 export const selectAllAlbums = createSelector(
   selectAlbumsState,
   fromAlbums.selectAll

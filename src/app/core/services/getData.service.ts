@@ -10,6 +10,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class GetDataService {
   artistList: Artist[] = [];
   albums: Album[] = [];
+  LikedAlbums: Album[] = [];
   songs: Song[] = [];
   currentArtist!: Artist;
 
@@ -60,6 +61,16 @@ export class GetDataService {
     });
     
     return this.albums;
+  }
+
+  getLikedAlbumsStore(): Album[] {
+    const albuns: Album[] = this.getAlbumsStore();
+    for(let album of albuns) {
+      if(album.favorite) {
+        this.LikedAlbums.push(album);
+      }
+    }
+    return this.LikedAlbums;
   }
 
   getSongsStore(): Song[] {

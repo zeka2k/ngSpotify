@@ -17,8 +17,6 @@ export class AlbumsResolver implements Resolve<any> {
   constructor(private store: Store<AppState>) {}
 
   resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
   ): Observable<any> {
     return this.store.pipe(
       select(areAlbumsLoaded),

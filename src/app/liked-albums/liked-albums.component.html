@@ -5,23 +5,24 @@
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav-content>
-    <div style="height: 65vh;">
-      <div *ngFor="let artist of albumList; let i = index">
-        <div *ngFor="let album of artist.albums; let j = index">
-          <div *ngIf="album.favorite == true">
-            <h2>
-              {{ album.title }}
-              <button class="btn btn-edit" (click)="addFavorite(i, j)">
-                <span class="material-symbols-outlined">favorite</span>
-              </button>
-            </h2>
-            <div>
-              <img [src]="album.image" alt="" />
-            </div>
-            <h2> Album description </h2>
-            <p>{{ album.description }}</p>
-            <ngSpotify-songs [curentAlbum]="album.title"  [songs]="album.songs"></ngSpotify-songs>
+    <div style="height: 65vh" *ngIf="albumList$ | async as albumList">
+      <div *ngFor="let album of albumList">
+        <div *ngIf="album.favorite == true">
+          <h2>
+            {{ album.title }}
+            <button class="btn btn-edit" (click)="addFavorite(album)">
+              <span class="material-symbols-outlined">favorite</span>
+            </button>
+          </h2>
+          <div>
+            <img [src]="album.image" alt="" />
           </div>
+          <h2>Album description</h2>
+          <p>{{ album.description }}</p>
+          <ngSpotify-songs
+            [curentAlbum]="album.title"
+            [songs]="album.songs"
+          ></ngSpotify-songs>
         </div>
       </div>
     </div>

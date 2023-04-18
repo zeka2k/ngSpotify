@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AlbumsResolver } from './core/store/resolvers/albums.resolver';
 import { ArtistsResolver } from './core/store/resolvers/artists.resolver';
 import { SongsResolver } from './core/store/resolvers/songs.resolver';
-//import { LikedAlbumsResolver } from './core/store/resolvers/liked-albums.resolver';
+import { LikedAlbumsResolver } from './core/store/resolvers/liked-albums.resolver';
 //import { LikedSongsResolver } from './core/store/resolvers/liked-albums.resolver';
 
 const routes: Routes = [
@@ -19,13 +19,14 @@ const routes: Routes = [
       resolve: {
         artists: ArtistsResolver,
         albums: AlbumsResolver,
-        songs: SongsResolver
+        songs: SongsResolver,
+        //likedAlbums: LikedAlbumsResolver,
       },
       providers: [
         ArtistsResolver,
         AlbumsResolver,
         SongsResolver,
-        //LikedAlbumsResolver
+        //LikedAlbumsResolver,
         //LikedSongsResolver
       ]
   },
@@ -35,6 +36,12 @@ const routes: Routes = [
       import('./liked-albums/liked-albums.module').then(
         (mod) => mod.LikedAlbumsModule
       ),
+      resolve: {
+        likedAlbums: LikedAlbumsResolver,
+      },
+      providers: [
+        LikedAlbumsResolver,
+      ]
   },
   {
     path: 'LikedSongs',

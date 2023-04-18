@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Artist } from '../core/services/artist';
-import { GetDataService } from '../core/services/getData.service';
+import { Album } from '../core/services/artist';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../reducers';
+import { selectAllLikedAlbums } from '../core/store/selectors/liked-albums.selectors';
+import { albumUpdated } from 'src/app/core/store/actions/albums.actions';
+import { Update } from '@ngrx/entity';
 
 @Component({
   selector: 'ngSpotify-liked-albums',
@@ -8,17 +13,25 @@ import { GetDataService } from '../core/services/getData.service';
   styleUrls: ['./liked-albums.component.scss'],
 })
 export class LikedAlbumsComponent implements OnInit {
-  albumList!: Artist[];
+  albumList$!: Observable<Album[]>;
   curentAlbum!: string;
 
-  constructor(private data: GetDataService) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.albumList = this.data.getArtists();
+    this.albumList$ = this.store.pipe(select(selectAllLikedAlbums));
   }
 
-  addFavorite(i: number, j: number) {
-    this.albumList[i].albums[j].favorite =
-      !this.albumList[i].albums[j].favorite;
+  addFavorite(album: Album) {
+    if (album != undefined) {
+      const update: Update<Album> = {
+        id: album.id,
+        changes: {favorite: !album.favorite}
+      };
+  
+      this.store.dispatch(albumUpdated({update}));
+      
+      //console.log(album.favorite);
+    }
   }
 }
