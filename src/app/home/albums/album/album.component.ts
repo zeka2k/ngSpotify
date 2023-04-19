@@ -56,17 +56,6 @@ export class AlbumComponent implements OnInit {
     const dialogRef = this.dialog.open(AlbumFormDialogComponent, {
       width: '500px',
     });
-
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   if (result.title != '') {
-    //     this.data.addAlbum(
-    //       this.curentArtist,
-    //       result.title,
-    //       result.description,
-    //       result.songs
-    //     );
-    //   }
-    // });
   }
 
   openEditDialog(album: Album): void {
@@ -75,8 +64,8 @@ export class AlbumComponent implements OnInit {
       data: album,
     });
 
-    dialogRef.afterClosed().subscribe((albumEdited: Album) => {
-      this.data.updateAlbum(albumEdited);
-    });
+    // dialogRef.afterClosed().subscribe((albumEdited: Album) => {
+    //   this.data.updateAlbum(albumEdited);
+    // });
   }
 }

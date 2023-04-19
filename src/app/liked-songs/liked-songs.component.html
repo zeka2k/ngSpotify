@@ -5,26 +5,28 @@
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav-content>
-    <div style="height: 65vh;" *ngIf="songList$ | async as songList">
+    <div style="height: 65vh" *ngIf="songList$ | async as songList">
       <table class="table">
-        <th>Title</th>
-        <th>
-          <span class="material-symbols-outlined">
-          timer
-          </span>
-        </th>
-        <th>Favorite</th>
-        <tr *ngFor="let song of songList">
-          <td>{{ song.title }}</td>
-          <td>{{ song.length }}s</td>
-          <td>
-            <div *ngIf="song.favorite == true">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>
+              <span class="material-symbols-outlined"> timer </span>
+            </th>
+            <th>Favorite</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let song of songList">
+          <tr *ngIf="song.favorite == true">
+            <td>{{ song.title }}</td>
+            <td>{{ song.length }}s</td>
+            <td>
               <button class="btn btn-edit" (click)="addFavorite(song)">
                 <span class="material-symbols-outlined">favorite</span>
               </button>
-            </div>
-          </td>
-        </tr>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </mat-sidenav-content>

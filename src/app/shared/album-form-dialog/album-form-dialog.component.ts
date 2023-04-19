@@ -7,7 +7,7 @@ import { Album, Song } from 'src/app/core/services/artist';
 import { GetDataService } from 'src/app/core/services/getData.service';
 import { v4 as uuid } from 'uuid';
 import { AppState } from 'src/app/reducers';
-import {Store} from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 import { albumUpdated } from 'src/app/core/store/actions/albums.actions';
 
@@ -39,7 +39,6 @@ export class AlbumFormDialogComponent {
         const songFormGroup = this.editSongFormGroup(song);
         (this.form.get('songs') as FormArray).push(songFormGroup);
       });
-      
     } else {
       this.form = this.fb.group({
         title: '',
@@ -55,14 +54,20 @@ export class AlbumFormDialogComponent {
   createSongFormGroup(): FormGroup {
     return this.fb.group({
       songName: ['', Validators.required],
-      songLength: ['', [Validators.required, Validators.pattern("^[0-5]?[0-9]:[0-5][0-9]$")]],
+      songLength: [
+        '',
+        [Validators.required, Validators.pattern('^[0-5]?[0-9]:[0-5][0-9]$')],
+      ],//criar id
     });
   }
 
   editSongFormGroup(data: Song): FormGroup {
     return this.fb.group({
       songName: [data.title, Validators.required],
-      songLength: [data.length, [Validators.required, Validators.pattern("^[0-5]?[0-9]:[0-5][0-9]$")]],
+      songLength: [
+        data.length,
+        [Validators.required, Validators.pattern('^[0-5]?[0-9]:[0-5][0-9]$')],
+      ],//atualizar id
     });
   }
 
@@ -94,31 +99,35 @@ export class AlbumFormDialogComponent {
     const songs: Song[] = [];
     const title = this.getTitle;
     const description = this.getDescription;
-    let id = '';
-    
-    if(this.data) {
-      id = this.data.id;
+    let albumId = '';
+
+    if (this.data) {
+      albumId = this.data.id;
     } else {
-      id = uuid();
+      albumId = uuid();
     }
 
+
     this.getSongs.controls.forEach((control) => {
-      songs.push(Song.fromForm(control.value));
+      //validacao se song ja exist ou nao
+      //se nao
+      songs.push(Song.fromForm(control.value, this.data.id));
+      //se sim
+      this.data.songs.find(control.value['id']);//fazer arrow function dentro do find
     });
 
     const album: Album = {
       ...this.album,
-      ...this.form.value
+      ...this.form.value,
     };
 
-    console.log(album.id);
+    //console.log(this.data.id);
     const update: Update<Album> = {
-      id: album.id,
+      id: this.data.id,
       changes: album
     };
 
-    this.store$.dispatch(albumUpdated({update}));//nao esta a dar update na store 
+    this.store$.dispatch(albumUpdated({ update }));
     this.dialogRef.close({});
   }
 }
-

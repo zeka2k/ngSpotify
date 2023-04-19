@@ -124,13 +124,13 @@ export class GetDataService {
   }
 
   updateAlbum(album: Album) {
-    //console.log('antes' + JSON.stringify(this.albums));
+    console.log('antes' + JSON.stringify(this.albums));
     this.albums.forEach((artistAlbum) => {
-      console.log(artistAlbum.id);
-      console.log(album.id);
+      // console.log("artist" + artistAlbum.id);
+      // console.log("album" + album.id);
       if (artistAlbum.id == album.id) {
-        // console.log('album que foi editado' + JSON.stringify(album));
-        // console.log('album que ja existia' + JSON.stringify(artistAlbum));
+        console.log('album que foi editado' + JSON.stringify(album));
+        console.log('album que ja existia' + JSON.stringify(artistAlbum));
         artistAlbum.title = album.title;
         artistAlbum.description = album.description;
         artistAlbum.songs = album.songs;

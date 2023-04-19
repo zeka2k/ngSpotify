@@ -13,14 +13,13 @@ import { songUpdated } from '../core/store/actions/songs.actions';
   styleUrls: ['./liked-songs.component.scss'],
 })
 export class LikedSongsComponent implements OnInit {
-  artists!: Artist[];
-  likedSongs!: Song[];
   songList$!: Observable<Song[]>;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.songList$ = this.store.pipe(select(selectAllLikedSongs));
+    console.log(this.songList$);
   }
 
   /**----> API Request <----**/

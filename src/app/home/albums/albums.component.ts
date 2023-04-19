@@ -31,15 +31,6 @@ export class AlbumsComponent implements OnInit {
       this.curentArtist = params['id'];
 
       this.artists$ = this.store$.pipe(select(selectArtistById(this.curentArtist)));
-      //console.log(this.store$);
-
-      //this.albums = this.data.getAlbums(this.curentArtist);
-      //console.log(this.albums);
     });
-
-    // this.data.albums$.subscribe((albums) => {
-    //   this.albums = albums;
-    //   //console.log(albums);
-    // });
   }
 }

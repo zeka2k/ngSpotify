@@ -25,6 +25,8 @@ export class SongsComponent implements OnInit, OnChanges{
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+    
     if(changes['songs'] && changes['songs'].currentValue) {
       for (let i = 0; i < this.songs?.length; i++) {
         let parts = this.songs[i].length

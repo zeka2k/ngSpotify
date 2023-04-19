@@ -33,12 +33,6 @@ const routes: Routes = [
       import('./liked-albums/liked-albums.module').then(
         (mod) => mod.LikedAlbumsModule
       ),
-      resolve: {
-        likedAlbums: LikedAlbumsResolver,
-      },
-      providers: [
-        LikedAlbumsResolver,
-      ]
   },
   {
     path: 'LikedSongs',
@@ -46,12 +40,6 @@ const routes: Routes = [
       import('./liked-songs/liked-songs.module').then(
         (mod) => mod.LikedSongsModule
       ),
-      resolve: {
-        likedSongs: LikedSongsResolver,
-      },
-      providers: [
-        LikedSongsResolver,
-      ]
   }
 ];
 

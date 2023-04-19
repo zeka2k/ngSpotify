@@ -1,3 +1,4 @@
+import { v4 as uuid } from 'uuid';
 export interface Artist {
   id: string;
   array: any;
@@ -16,7 +17,7 @@ export interface Album {
 }
 
 export interface Song {
-  id: string,
+  id: string;
   title: string;
   length: string;
   favorite: boolean;
@@ -36,15 +37,27 @@ export interface SongForm {
 }
 
 export class Song {
-  constructor(title: string, length: string, favorite: boolean) {
+  constructor(title: string, length: string, favorite: boolean, id: string, albumId: string) {
     this.title = title;
     this.length = length;
     this.favorite = favorite;
   }
 
-  public static fromForm(form: SongForm) {
-    return new Song(form.songName, form.songLength, false);
+  public static fromForm(form: SongForm, albumId: string) {
+    let songId = '';
+    songId = uuid();
+    return new Song(form.songName, form.songLength, false, songId, albumId);
   }
+
+  public setvalue(form: SongForm) {
+    this.title = form.songName;
+    this.length = form.songLength;
+  }
+
+  // public static updateFromForm(form: SongForm, id: string, favorite) {
+  //   const songId;
+  //   return new Song(form.songName, form.songLength, false);
+  // }
 }
 
 // export function compareCourses(a1: Artist, a2: Artist) {
