@@ -37,7 +37,13 @@ export interface SongForm {
 }
 
 export class Song {
-  constructor(title: string, length: string, favorite: boolean, id: string, albumId: string) {
+  constructor(
+    title: string,
+    length: string,
+    favorite: boolean,
+    id: string,
+    albumId: string
+  ) {
     this.title = title;
     this.length = length;
     this.favorite = favorite;
@@ -49,7 +55,7 @@ export class Song {
     return new Song(form.songName, form.songLength, false, songId, albumId);
   }
 
-  public setvalue(form: SongForm) {
+  setvalue(form: SongForm) {
     this.title = form.songName;
     this.length = form.songLength;
   }

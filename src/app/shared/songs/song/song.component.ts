@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Song } from 'src/app/core/services/artist';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/reducers';
@@ -20,7 +20,7 @@ export class SongComponent {
   constructor(public store$: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.song$ = this.store$.pipe(select(selectSongsById(this.songId)));
+    this.song$ = this.store$.select(selectSongsById(this.songId));
   }
 
   addFavorite(song: Song) {

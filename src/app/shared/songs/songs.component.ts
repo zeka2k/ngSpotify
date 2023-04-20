@@ -22,11 +22,13 @@ export class SongsComponent implements OnInit, OnChanges{
   constructor(private data: GetDataService) {}
 
   ngOnInit(): void {
+    //select para todos as musicas de um dado album
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes);
-    
+  
     if(changes['songs'] && changes['songs'].currentValue) {
       for (let i = 0; i < this.songs?.length; i++) {
         let parts = this.songs[i].length
